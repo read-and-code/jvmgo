@@ -7,7 +7,7 @@ func main() {
 
 	if cmd.showVersion {
 		fmt.Println("Version 0.0.1")
-	} else if cmd.showHelp || cmd.className == "" {
+	} else if cmd.showHelp || cmd.mainClass == "" {
 		printUsage()
 	} else {
 		startJVM(cmd)
@@ -15,5 +15,5 @@ func main() {
 }
 
 func startJVM(cmd *Cmd) {
-	fmt.Printf("Classpath: %s, className: %s, arguments: %v\n", cmd.classPath, cmd.className, cmd.arguments)
+	fmt.Printf("Classpath: %s, mainClass: %s, arguments: %v\n", cmd.classPath, cmd.mainClass, cmd.arguments)
 }

@@ -9,8 +9,9 @@ import (
 type Cmd struct {
 	showHelp bool
 	showVersion bool
+	jrePath string
 	classPath string
-	className string
+	mainClass string
 	arguments []string
 }
 
@@ -21,20 +22,17 @@ func parseCmd() *Cmd {
 	flag.BoolVar(&cmd.showHelp, "help", false, "Print help message")
 	flag.BoolVar(&cmd.showHelp, "?", false, "Print help message")
 	flag.BoolVar(&cmd.showVersion, "version", false, "Print version and exit")
+	flag.StringVar(&cmd.jrePath, "jre", "", "jre path")
 	flag.StringVar(&cmd.classPath, "classpath", "", "Classpath")
 	flag.StringVar(&cmd.classPath, "cp", "", "Classpath")
+	flag.StringVar(&cmd.mainClass, "class", "", "Main class")
 	flag.Parse()
 
-	arguments := flag.Args()
-
-	if len(arguments) > 0 {
-		cmd.className = arguments[0]
-		cmd.arguments = arguments[1:]
-	}
+	cmd.arguments = flag.Args()
 
 	return cmd
 }
 
 func printUsage() {
-	fmt.Printf("Usage: %s [-options] className [arguments...]\n", os.Args[0])
+	fmt.Printf("Usage: %s -classpath class/path -class ClassName [arguments...]\n", os.Args[0])
 }
