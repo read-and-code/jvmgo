@@ -3,7 +3,7 @@ package main
 import (
 	"strings"
 	"fmt"
-	"jvmgo/classpath"
+	"github.com/Frederick-S/jvmgo/classpath"
 )
 
 func main() {
