@@ -1,19 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"strings"
+	"fmt"
+	"jvmgo/classpath"
+)
 
 func main() {
 	cmd := parseCmd()
 
-	if cmd.showVersion {
+	if cmd.ShowVersion {
 		fmt.Println("Version 0.0.1")
-	} else if cmd.showHelp || cmd.mainClass == "" {
-		printUsage()
+	} else if cmd.ShowHelp || cmd.ClassName == "" {
+		printCmdUsage()
 	} else {
 		startJVM(cmd)
 	}
 }
 
 func startJVM(cmd *Cmd) {
-	fmt.Printf("Classpath: %s, mainClass: %s, arguments: %v\n", cmd.classPath, cmd.mainClass, cmd.arguments)
+	fmt.Printf("Classpath: %s, className: %s, arguments: %v\n", cmd.Classpath, cmd.ClassName, cmd.Arguments)
+
+	classloader := classpath.Parse(cmd.JrePath, cmd.Classpath)
+	className := strings.Replace(cmd.ClassName, ".", "/", -1)
+	classData, _, err := classloader.ReadClass(className)
+
+	if err != nil {
+		fmt.Printf("Could not find or load main class %s\n", cmd.ClassName)
+
+		return
+	}
+
+	fmt.Printf("Class data: %v\n", classData)
 }
