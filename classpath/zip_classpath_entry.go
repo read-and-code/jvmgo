@@ -18,7 +18,7 @@ func NewZipClasspathEntry(path string) ZipClasspathEntry {
 		panic(err)
 	}
 
-	return ZipClasspathEntry{ absolutePath }
+	return ZipClasspathEntry{absolutePath}
 }
 
 func (zipClasspathEntry ZipClasspathEntry) ReadClass(className string) ([]byte, ClasspathEntry, error) {

@@ -16,7 +16,7 @@ func NewDirectoryClasspathEntry(path string) DirectoryClasspathEntry {
 		panic(err)
 	}
 
-	return DirectoryClasspathEntry{ absoluteDirectory }
+	return DirectoryClasspathEntry{absoluteDirectory}
 }
 
 func (directoryClasspathEntry DirectoryClasspathEntry) ReadClass(className string) ([]byte, ClasspathEntry, error) {
