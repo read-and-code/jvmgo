@@ -6,9 +6,9 @@ import (
 )
 
 type Classloader struct {
-	BootstrapClasspathEntry ClasspathEntry
-	ExtensionsClasspathEntry ClasspathEntry
-	UserClasspathEntry ClasspathEntry
+	bootstrapClasspathEntry  ClasspathEntry
+	extensionsClasspathEntry ClasspathEntry
+	userClasspathEntry       ClasspathEntry
 }
 
 func Parse(jrePath, classpath string) *Classloader {
@@ -24,11 +24,11 @@ func (classloader *Classloader) parseBootstrapAndExtensionsClasspathEntry(jrePat
 
 	// jre/lib/*
 	jreLibPath := filepath.Join(jreDirectory, "lib", "*")
-	classloader.BootstrapClasspathEntry = NewWildcardClasspathEntry(jreLibPath)
+	classloader.bootstrapClasspathEntry = NewWildcardClasspathEntry(jreLibPath)
 
 	// jre/lib/ext/*
 	jreExtensionsPath := filepath.Join(jreDirectory, "lib", "ext", "*")
-	classloader.ExtensionsClasspathEntry = NewWildcardClasspathEntry(jreExtensionsPath)
+	classloader.extensionsClasspathEntry = NewWildcardClasspathEntry(jreExtensionsPath)
 }
 
 func (classloader *Classloader) parseUserClasspathEntry(classpath string) {
@@ -36,7 +36,7 @@ func (classloader *Classloader) parseUserClasspathEntry(classpath string) {
 		classpath = "."
 	}
 
-	classloader.UserClasspathEntry = NewClasspathEntry(classpath)
+	classloader.userClasspathEntry = NewClasspathEntry(classpath)
 }
 
 func getJreDirectory(jrePath string) string {
@@ -70,17 +70,17 @@ func isDirectoryExists(path string) bool {
 func (classloader *Classloader) ReadClass(className string) ([]byte, ClasspathEntry, error) {
 	className = className + ".class"
 
-	data, classpathEntry, err := classloader.BootstrapClasspathEntry.ReadClass(className)
+	data, classpathEntry, err := classloader.bootstrapClasspathEntry.ReadClass(className)
 
 	if err == nil {
 		return data, classpathEntry, err
 	}
 
-	data, classpathEntry, err = classloader.ExtensionsClasspathEntry.ReadClass(className)
+	data, classpathEntry, err = classloader.extensionsClasspathEntry.ReadClass(className)
 
 	if err == nil {
 		return data, classpathEntry, err
 	}
 
-	return classloader.UserClasspathEntry.ReadClass(className)
+	return classloader.userClasspathEntry.ReadClass(className)
 }

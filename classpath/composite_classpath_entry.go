@@ -11,8 +11,8 @@ func NewCompositeClasspathEntry(pathList string) CompositeClasspathEntry {
 	compositeClasspathEntry := []ClasspathEntry{}
 
 	for _, path := range strings.Split(pathList, pathListSeparator) {
-		entry := NewClasspathEntry(path)
-		compositeClasspathEntry = append(compositeClasspathEntry, entry)
+		classpathEntry := NewClasspathEntry(path)
+		compositeClasspathEntry = append(compositeClasspathEntry, classpathEntry)
 	}
 
 	return compositeClasspathEntry

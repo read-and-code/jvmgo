@@ -8,7 +8,7 @@ import (
 
 func NewWildcardClasspathEntry(path string) CompositeClasspathEntry {
 	// Remove * at the end of path
-	baseDirectory := path[:len(path) - 1]
+	baseDirectory := path[:len(path)-1]
 	compositeClasspathEntry := []ClasspathEntry{}
 
 	walk := func(path string, fileInfo os.FileInfo, err error) error {
@@ -21,8 +21,8 @@ func NewWildcardClasspathEntry(path string) CompositeClasspathEntry {
 		}
 
 		if strings.HasSuffix(path, ".jar") || strings.HasSuffix(path, ".JAR") {
-			jarEntry := NewZipClasspathEntry(path)
-			compositeClasspathEntry = append(compositeClasspathEntry, jarEntry)
+			jarClasspathEntry := NewZipClasspathEntry(path)
+			compositeClasspathEntry = append(compositeClasspathEntry, jarClasspathEntry)
 		}
 
 		return nil
