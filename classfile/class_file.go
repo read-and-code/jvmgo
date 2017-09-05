@@ -123,7 +123,7 @@ func (classFile *ClassFile) GetMethods() []*MemberInfo {
 }
 
 func (classFile *ClassFile) GetClassName() string {
-	return classFile.constantPool.GetUtf8String(classFile.thisClassIndex)
+	return classFile.constantPool.GetClassName(classFile.thisClassIndex)
 }
 
 func (classFile *ClassFile) GetSuperClassName() string {
