@@ -8,11 +8,11 @@ CONSTANT_MethodHandle_info {
 }
 */
 type ConstantMethodHandleInfo struct {
-	referenceKind  uint8
-	referenceIndex uint16
+	methodHandleKind           uint8
+	methodHandleReferenceIndex uint16
 }
 
 func (constantMethodHandleInfo *ConstantMethodHandleInfo) Read(classReader *ClassReader) {
-	constantMethodHandleInfo.referenceKind = classReader.ReadUint8()
-	constantMethodHandleInfo.referenceIndex = classReader.ReadUint16()
+	constantMethodHandleInfo.methodHandleKind = classReader.ReadUint8()
+	constantMethodHandleInfo.methodHandleReferenceIndex = classReader.ReadUint16()
 }
