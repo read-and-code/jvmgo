@@ -1,8 +1,6 @@
 package classfile
 
-import (
-	"fmt"
-)
+import "fmt"
 
 /*
 ClassFile {
