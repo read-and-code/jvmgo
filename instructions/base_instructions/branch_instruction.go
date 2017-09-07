@@ -1,4 +1,4 @@
-package base
+package base_instructions
 
 type BranchInstruction struct {
 	offset int

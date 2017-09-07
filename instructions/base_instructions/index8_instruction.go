@@ -1,9 +1,9 @@
-package base
+package base_instructions
 
 type Index8Instruction struct {
-	index uint
+	Index uint
 }
 
 func (index8Instruction *Index8Instruction) FetchOperands(bytecodeReader *BytecodeReader) {
-	index8Instruction.index = uint(bytecodeReader.ReadUint8())
+	index8Instruction.Index = uint(bytecodeReader.ReadUint8())
 }

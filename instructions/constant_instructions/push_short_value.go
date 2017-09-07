@@ -1,7 +1,7 @@
-package constants
+package constant_instructions
 
 import (
-	"github.com/Frederick-S/jvmgo/instructions/base"
+	"github.com/Frederick-S/jvmgo/instructions/base_instructions"
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
@@ -10,7 +10,7 @@ type PushShortValue struct {
 	value int16
 }
 
-func (pushShortValue *PushShortValue) FetchOperands(bytecodeReader *base.BytecodeReader) {
+func (pushShortValue *PushShortValue) FetchOperands(bytecodeReader *base_instructions.BytecodeReader) {
 	pushShortValue.value = bytecodeReader.ReadInt16()
 }
 

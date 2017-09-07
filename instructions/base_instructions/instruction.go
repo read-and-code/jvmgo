@@ -1,4 +1,4 @@
-package base
+package base_instructions
 
 import "github.com/Frederick-S/jvmgo/runtime_data_area"
 
