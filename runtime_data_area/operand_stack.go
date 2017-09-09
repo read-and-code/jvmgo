@@ -78,3 +78,14 @@ func (operandStack *OperandStack) PopReferenceValue() *Object {
 
 	return referenceValue
 }
+
+func (operandStack *OperandStack) PushOperand(variable Variable) {
+	operandStack.operands[operandStack.size] = variable
+	operandStack.size++
+}
+
+func (operandStack *OperandStack) PopOperand() Variable {
+	operandStack.size--
+
+	return operandStack.operands[operandStack.size]
+}
