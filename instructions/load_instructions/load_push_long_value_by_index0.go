@@ -5,11 +5,11 @@ import (
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
-// iload_3
-type LoadPushIntegerValueByIndex3 struct {
+// lload_0
+type LoadPushLongValueByIndex0 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (loadPushIntegerValueByIndex3 *LoadPushIntegerValueByIndex3) Execute(frame *runtime_data_area.Frame) {
-	loadIntegerValueAndPush(frame, 3)
+func (loadPushLongValueByIndex0 *LoadPushLongValueByIndex0) Execute(frame *runtime_data_area.Frame) {
+	loadLongValueAndPush(frame, 0)
 }

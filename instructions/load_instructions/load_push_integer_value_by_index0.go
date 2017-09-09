@@ -7,7 +7,7 @@ import (
 
 // iload_0
 type LoadPushIntegerValueByIndex0 struct {
-	base_instructions.Index8Instruction
+	base_instructions.NoOperandsInstruction
 }
 
 func (loadPushIntegerValueByIndex0 *LoadPushIntegerValueByIndex0) Execute(frame *runtime_data_area.Frame) {
