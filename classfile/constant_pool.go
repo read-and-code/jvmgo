@@ -32,9 +32,9 @@ func (constantPool ConstantPool) GetConstantInfo(index uint16) ConstantInfo {
 }
 
 func (constantPool ConstantPool) GetClassName(index uint16) string {
-	constantClassReferenceInfo := constantPool.GetConstantInfo(index).(*ConstantClassReferenceInfo)
+	constantClassInfo := constantPool.GetConstantInfo(index).(*ConstantClassInfo)
 
-	return constantPool.GetUtf8String(constantClassReferenceInfo.nameIndex)
+	return constantPool.GetUtf8String(constantClassInfo.nameIndex)
 }
 
 func (constantPool ConstantPool) GetNameAndTypeDescriptor(index uint16) (string, string) {

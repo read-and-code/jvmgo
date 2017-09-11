@@ -3,7 +3,7 @@ package classfile
 // Constant pool tags
 // https://en.wikipedia.org/wiki/Java_class_file#The_constant_pool
 const (
-	constantTypeClassReference           = 7
+	constantTypeClass                    = 7
 	constantTypeFieldReference           = 9
 	constantTypeMethodReference          = 10
 	constantTypeInterfaceMethodReference = 11
@@ -45,8 +45,8 @@ func newConstantInfo(constantInfoType uint8, constantPool ConstantPool) Constant
 		return &ConstantUtf8StringInfo{}
 	case constantTypeStringReference:
 		return &ConstantStringReferenceInfo{constantPool: constantPool}
-	case constantTypeClassReference:
-		return &ConstantClassReferenceInfo{constantPool: constantPool}
+	case constantTypeClass:
+		return &ConstantClassInfo{constantPool: constantPool}
 	case constantTypeFieldReference:
 		return &ConstantFieldReferenceInfo{ConstantMemberReferenceInfo{constantPool: constantPool}}
 	case constantTypeMethodReference:

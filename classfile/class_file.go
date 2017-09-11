@@ -23,17 +23,17 @@ ClassFile {
 }
 */
 type ClassFile struct {
-	magicNumber     uint32
-	minorVersion    uint16
-	majorVersion    uint16
-	constantPool    ConstantPool
-	accessFlags     uint16
-	thisClassIndex  uint16
-	superClassIndex uint16
-	interfaces      []uint16
-	fields          []*MemberInfo
-	methods         []*MemberInfo
-	attributes      []AttributeInfo
+	magicNumber      uint32
+	minorVersion     uint16
+	majorVersion     uint16
+	constantPool     ConstantPool
+	accessFlags      uint16
+	thisClassIndex   uint16
+	superClassIndex  uint16
+	interfaceIndices []uint16
+	fields           []*MemberInfo
+	methods          []*MemberInfo
+	attributes       []AttributeInfo
 }
 
 func Parse(classData []byte) (classFile *ClassFile, err error) {
@@ -66,7 +66,7 @@ func (classFile *ClassFile) Read(classReader *ClassReader) {
 	classFile.accessFlags = classReader.ReadUint16()
 	classFile.thisClassIndex = classReader.ReadUint16()
 	classFile.superClassIndex = classReader.ReadUint16()
-	classFile.interfaces = classReader.ReadUint16Table()
+	classFile.interfaceIndices = classReader.ReadUint16Table()
 	classFile.fields = readMembers(classReader, classFile.constantPool)
 	classFile.methods = readMembers(classReader, classFile.constantPool)
 	classFile.attributes = readAttributes(classReader, classFile.constantPool)
@@ -133,9 +133,9 @@ func (classFile *ClassFile) GetSuperClassName() string {
 }
 
 func (classFile *ClassFile) GetInterfaceNames() []string {
-	interfaceNames := make([]string, len(classFile.interfaces))
+	interfaceNames := make([]string, len(classFile.interfaceIndices))
 
-	for i, interfaceIndex := range classFile.interfaces {
+	for i, interfaceIndex := range classFile.interfaceIndices {
 		interfaceNames[i] = classFile.constantPool.GetClassName(interfaceIndex)
 	}
 
