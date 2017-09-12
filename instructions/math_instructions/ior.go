@@ -5,20 +5,20 @@ import (
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
-// imul
-// Multiply int.
+// ior
+// Boolean OR int.
 // Both value1 and value2 must be of type int.
-// The values are popped from the operand stack.
-// The int result is value1 * value2.
+// They are popped from the operand stack.
+// An int result is calculated by taking the bitwise inclusive OR of value1 and value2.
 // The result is pushed onto the operand stack.
-type IMul struct {
+type IOr struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (iMul *IMul) Execute(frame *runtime_data_area.Frame) {
+func (iOr *IOr) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
 	integerValue1 := operandStack.PopIntegerValue()
 	integerValue2 := operandStack.PopIntegerValue()
 
-	operandStack.PushIntegerValue(integerValue1 * integerValue2)
+	operandStack.PushIntegerValue(integerValue1 | integerValue2)
 }
