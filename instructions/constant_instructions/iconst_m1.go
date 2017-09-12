@@ -6,10 +6,11 @@ import (
 )
 
 // iconst_m1
-type PushIntegerConstantNegative1 struct {
+// Push the int constant <i> (-1) onto the operand stack.
+type IConstM1 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (pushIntegerConstantNegative1 *PushIntegerConstantNegative1) Execute(frame *runtime_data_area.Frame) {
+func (iConstM1 *IConstM1) Execute(frame *runtime_data_area.Frame) {
 	frame.GetOperandStack().PushIntegerValue(-1)
 }

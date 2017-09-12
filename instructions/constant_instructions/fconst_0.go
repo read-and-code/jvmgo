@@ -6,10 +6,11 @@ import (
 )
 
 // fconst_0
-type PushFloatConstant0 struct {
+// Push the float constant <f> (0.0) onto the operand stack.
+type FConst0 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (pushFloatConstant0 *PushFloatConstant0) Execute(frame *runtime_data_area.Frame) {
+func (fConst0 *FConst0) Execute(frame *runtime_data_area.Frame) {
 	frame.GetOperandStack().PushFloatValue(0.0)
 }

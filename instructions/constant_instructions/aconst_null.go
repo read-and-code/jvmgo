@@ -6,10 +6,11 @@ import (
 )
 
 // aconst_null
-type PushNull struct {
+// Push the null object reference onto the operand stack.
+type AConstNull struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (pushNull *PushNull) Execute(frame *runtime_data_area.Frame) {
+func (aConstNull *AConstNull) Execute(frame *runtime_data_area.Frame) {
 	frame.GetOperandStack().PushReferenceValue(nil)
 }

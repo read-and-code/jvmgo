@@ -6,10 +6,11 @@ import (
 )
 
 // dconst_1
-type PushDoubleConstant1 struct {
+// Push the double constant <d> (1.0) onto the operand stack.
+type DConst1 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (pushDoubleConstant1 *PushDoubleConstant1) Execute(frame *runtime_data_area.Frame) {
+func (dConst1 *DConst1) Execute(frame *runtime_data_area.Frame) {
 	frame.GetOperandStack().PushDoubleValue(1.0)
 }

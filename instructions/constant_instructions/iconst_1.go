@@ -5,11 +5,12 @@ import (
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
-// iconst_2
-type PushIntegerConstant2 struct {
+// iconst_1
+// Push the int constant <i> (1) onto the operand stack.
+type IConst1 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (pushIntegerConstant2 *PushIntegerConstant2) Execute(frame *runtime_data_area.Frame) {
-	frame.GetOperandStack().PushIntegerValue(2)
+func (iConst1 *IConst1) Execute(frame *runtime_data_area.Frame) {
+	frame.GetOperandStack().PushIntegerValue(1)
 }

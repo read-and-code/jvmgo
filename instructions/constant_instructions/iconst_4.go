@@ -5,10 +5,12 @@ import (
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
-// nop
-type NoOperation struct {
+// iconst_4
+// Push the int constant <i> (4) onto the operand stack.
+type IConst4 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (noOperation *NoOperation) Execute(frame *runtime_data_area.Frame) {
+func (iConst4 *IConst4) Execute(frame *runtime_data_area.Frame) {
+	frame.GetOperandStack().PushIntegerValue(4)
 }

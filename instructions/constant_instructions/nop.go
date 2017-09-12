@@ -5,11 +5,11 @@ import (
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
-// lconst_0
-type PushLongConstant0 struct {
+// nop
+// Do nothing.
+type Nop struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (pushLongConstant0 *PushLongConstant0) Execute(frame *runtime_data_area.Frame) {
-	frame.GetOperandStack().PushLongValue(0)
+func (nop *Nop) Execute(frame *runtime_data_area.Frame) {
 }
