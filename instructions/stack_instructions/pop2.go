@@ -6,11 +6,12 @@ import (
 )
 
 // pop2
-type PopOneOrTwoOperandStackValues struct {
+// Pop the top one or two values from the operand stack.
+type Pop2 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (popOneOrTwoOperandStackValues *PopOneOrTwoOperandStackValues) Execute(frame *runtime_data_area.Frame) {
+func (pop2 *Pop2) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
 
 	operandStack.PopOperand()

@@ -6,11 +6,12 @@ import (
 )
 
 // dup_x2
-type CopyTopOperandStackValueAndInsertTwoOrThreeValuesDown struct {
+// Duplicate the top value on the operand stack and insert the duplicated value two or three values down in the operand stack.
+type DupX2 struct {
 	base_instructions.NoOperandsInstruction
 }
 
-func (copyTopOperandStackValueAndInsertTwoOrThreeValuesDown *CopyTopOperandStackValueAndInsertTwoOrThreeValuesDown) Execute(frame *runtime_data_area.Frame) {
+func (dupX2 *DupX2) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
 	operandValue1 := operandStack.PopOperand()
 	operandValue2 := operandStack.PopOperand()
