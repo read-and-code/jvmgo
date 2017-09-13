@@ -57,3 +57,14 @@ func (memberInfo *MemberInfo) GetName() string {
 func (memberInfo *MemberInfo) GetDescriptor() string {
 	return memberInfo.constantPool.GetUtf8String(memberInfo.descriptorIndex)
 }
+
+func (memberInfo *MemberInfo) GetCodeAttribute() *CodeAttribute {
+	for _, attribute := range memberInfo.attributes {
+		switch attribute.(type) {
+		case *CodeAttribute:
+			return attribute.(*CodeAttribute)
+		}
+	}
+
+	return nil
+}

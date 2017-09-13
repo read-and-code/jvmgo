@@ -19,7 +19,7 @@ func (lUshr *LUshr) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
 	integerValue := operandStack.PopIntegerValue()
 	longValue := operandStack.PopLongValue()
-	bitPositions := uint32(longValue) & 0x3f
+	bitPositions := uint32(integerValue) & 0x3f
 
-	operandStack.PushLongValue(int64(uint64(integerValue) >> bitPositions))
+	operandStack.PushLongValue(int64(uint64(longValue) >> bitPositions))
 }

@@ -8,8 +8,9 @@ type Frame struct {
 	nextPC         int
 }
 
-func NewFrame(maxNumberOfLocalVariables, maxStackSize uint) *Frame {
+func newFrame(thread *Thread, maxNumberOfLocalVariables, maxStackSize uint) *Frame {
 	return &Frame{
+		thread:         thread,
 		localVariables: newLocalVariables(maxNumberOfLocalVariables),
 		operandStack:   newOperandStack(maxStackSize),
 	}
