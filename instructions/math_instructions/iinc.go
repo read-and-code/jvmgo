@@ -12,19 +12,19 @@ import (
 // The local variable at index must contain an int.
 // The value const is first sign-extended to an int, and then the local variable at index is incremented by that amount.
 type IInc struct {
-	index    uint
-	constant int32
+	Index    uint
+	Constant int32
 }
 
 func (iInc *IInc) FetchOperands(bytecodeReader *base_instructions.BytecodeReader) {
-	iInc.index = uint(bytecodeReader.ReadUint8())
-	iInc.constant = int32(bytecodeReader.ReadInt8())
+	iInc.Index = uint(bytecodeReader.ReadUint8())
+	iInc.Constant = int32(bytecodeReader.ReadInt8())
 }
 
 func (iInc *IInc) Execute(frame *runtime_data_area.Frame) {
 	localVariables := frame.GetLocalVariables()
-	value := localVariables.GetIntegerValue(iInc.index)
-	value += iInc.constant
+	value := localVariables.GetIntegerValue(iInc.Index)
+	value += iInc.Constant
 
-	localVariables.SetIntegerValue(iInc.index, value)
+	localVariables.SetIntegerValue(iInc.Index, value)
 }
