@@ -1,9 +1,9 @@
 package base_instructions
 
 type BranchInstruction struct {
-	offset int
+	Offset int
 }
 
 func (branchInstruction *BranchInstruction) FetchOperands(bytecodeReader *BytecodeReader) {
-	branchInstruction.offset = int(bytecodeReader.ReadInt16())
+	branchInstruction.Offset = int(bytecodeReader.ReadInt16())
 }

@@ -4,6 +4,8 @@ type Frame struct {
 	lower          *Frame
 	localVariables LocalVariables
 	operandStack   *OperandStack
+	thread         *Thread
+	nextPC         int
 }
 
 func NewFrame(maxNumberOfLocalVariables, maxStackSize uint) *Frame {
@@ -19,4 +21,16 @@ func (frame *Frame) GetLocalVariables() LocalVariables {
 
 func (frame *Frame) GetOperandStack() *OperandStack {
 	return frame.operandStack
+}
+
+func (frame *Frame) GetThread() *Thread {
+	return frame.thread
+}
+
+func (frame *Frame) GetNextPC() int {
+	return frame.nextPC
+}
+
+func (frame *Frame) SetNextPC(nextPC int) {
+	frame.nextPC = nextPC
 }
