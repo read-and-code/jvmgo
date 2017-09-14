@@ -21,8 +21,8 @@ type DCmpl struct {
 
 func (dCmpl *DCmpl) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	doubleValue1 := operandStack.PopDoubleValue()
 	doubleValue2 := operandStack.PopDoubleValue()
+	doubleValue1 := operandStack.PopDoubleValue()
 
 	if doubleValue1 > doubleValue2 {
 		operandStack.PushIntegerValue(1)

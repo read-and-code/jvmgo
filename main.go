@@ -9,7 +9,11 @@ import (
 )
 
 func main() {
-	cmd := parseCmd()
+	//cmd := parseCmd()
+	cmd := &Cmd{
+		jrePath:   "/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/jre",
+		className: "./java/Sum",
+	}
 
 	if cmd.showVersion {
 		fmt.Println("Version 0.0.1")

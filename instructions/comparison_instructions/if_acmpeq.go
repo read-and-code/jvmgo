@@ -22,8 +22,8 @@ type IfACmpEq struct {
 
 func (ifACmpEq *IfACmpEq) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	referenceValue1 := operandStack.PopReferenceValue()
 	referenceValue2 := operandStack.PopReferenceValue()
+	referenceValue1 := operandStack.PopReferenceValue()
 
 	if referenceValue1 == referenceValue2 {
 		base_instructions.JumpToBranch(frame, ifACmpEq.Offset)

@@ -20,8 +20,8 @@ type FCmpl struct {
 
 func (fCmpl *FCmpl) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	floatValue1 := operandStack.PopFloatValue()
 	floatValue2 := operandStack.PopFloatValue()
+	floatValue1 := operandStack.PopFloatValue()
 
 	if floatValue1 > floatValue2 {
 		operandStack.PushIntegerValue(1)
@@ -30,6 +30,6 @@ func (fCmpl *FCmpl) Execute(frame *runtime_data_area.Frame) {
 	} else if floatValue1 < floatValue2 {
 		operandStack.PushIntegerValue(-1)
 	} else {
-		operandStack.PushIntegerValue(1)
+		operandStack.PushIntegerValue(-1)
 	}
 }
