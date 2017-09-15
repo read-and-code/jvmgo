@@ -31,13 +31,13 @@ func newConstantPool(class *Class, classFileConstantPool classfile.ConstantPool)
 		case *classfile.ConstantStringReferenceInfo:
 			constants[i] = constantInfo.(*classfile.ConstantStringReferenceInfo).GetString()
 		case *classfile.ConstantClassInfo:
-			//
+			constants[i] = newClassReference(constantPool, constantInfo.(*classfile.ConstantClassInfo))
 		case *classfile.ConstantFieldReferenceInfo:
-			//
+			constants[i] = newFieldReference(constantPool, constantInfo.(*classfile.ConstantFieldReferenceInfo))
 		case *classfile.ConstantMethodReferenceInfo:
-			//
+			constants[i] = newMethodReference(constantPool, constantInfo.(*classfile.ConstantMethodReferenceInfo))
 		case *classfile.ConstantInterfaceMethodReferenceInfo:
-			//
+			constants[i] = newInterfaceMethodReference(constantPool, constantInfo.(*classfile.ConstantInterfaceMethodReferenceInfo))
 		default:
 			// pass
 		}
