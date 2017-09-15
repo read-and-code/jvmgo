@@ -15,3 +15,7 @@ func (constantLongInfo *ConstantLongInfo) Read(classReader *ClassReader) {
 	bytes := classReader.ReadUint64()
 	constantLongInfo.value = int64(bytes)
 }
+
+func (constantLongInfo *ConstantLongInfo) GetValue() int64 {
+	return constantLongInfo.value
+}

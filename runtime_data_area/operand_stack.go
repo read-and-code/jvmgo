@@ -1,6 +1,10 @@
 package runtime_data_area
 
-import "math"
+import (
+	"math"
+
+	"github.com/Frederick-S/jvmgo/runtime_data_area/heap"
+)
 
 type OperandStack struct {
 	size     uint
@@ -66,12 +70,12 @@ func (operandStack *OperandStack) PopDoubleValue() float64 {
 	return math.Float64frombits(float64Bits)
 }
 
-func (operandStack *OperandStack) PushReferenceValue(referenceValue *Object) {
+func (operandStack *OperandStack) PushReferenceValue(referenceValue *heap.Object) {
 	operandStack.operands[operandStack.size].referenceValue = referenceValue
 	operandStack.size++
 }
 
-func (operandStack *OperandStack) PopReferenceValue() *Object {
+func (operandStack *OperandStack) PopReferenceValue() *heap.Object {
 	operandStack.size--
 	referenceValue := operandStack.operands[operandStack.size].referenceValue
 	operandStack.operands[operandStack.size].referenceValue = nil

@@ -31,6 +31,6 @@ func (thread *Thread) GetCurrentFrame() *Frame {
 	return thread.jvmStack.GetTopFrame()
 }
 
-func (thread *Thread) NewFrame(maxNumberOfLocalVariables, maxStackDepth uint) *Frame {
-	return newFrame(thread, maxNumberOfLocalVariables, maxStackDepth)
+func (thread *Thread) NewFrame(maxNumberOfLocalVariables, maxStackSize uint) *Frame {
+	return newFrame(thread, maxNumberOfLocalVariables, maxStackSize)
 }

@@ -25,9 +25,9 @@ func main() {
 }
 
 func startJVM(cmd *Cmd) {
-	classloader := classpath.Parse(cmd.jrePath, cmd.classpath)
+	classFinder := classpath.Parse(cmd.jrePath, cmd.classpath)
 	className := strings.Replace(cmd.className, ".", "/", -1)
-	classFile := loadClass(className, classloader)
+	classFile := loadClass(className, classFinder)
 	mainMethod := getMainMethod(classFile)
 
 	if mainMethod != nil {
@@ -37,8 +37,8 @@ func startJVM(cmd *Cmd) {
 	}
 }
 
-func loadClass(className string, classloader *classpath.Classloader) *classfile.ClassFile {
-	classData, _, err := classloader.ReadClass(className)
+func loadClass(className string, classFinder *classpath.ClassFinder) *classfile.ClassFile {
+	classData, _, err := classFinder.ReadClass(className)
 
 	if err != nil {
 		panic(err)

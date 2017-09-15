@@ -20,7 +20,7 @@ Code_attribute {
 */
 type CodeAttribute struct {
 	constantPool              ConstantPool
-	maxStackDepth             uint16
+	maxStackSize              uint16
 	maxNumberOfLocalVariables uint16
 	code                      []byte
 	exceptionTable            []*ExceptionTableEntry
@@ -28,7 +28,7 @@ type CodeAttribute struct {
 }
 
 func (codeAttribute *CodeAttribute) Read(classReader *ClassReader) {
-	codeAttribute.maxStackDepth = classReader.ReadUint16()
+	codeAttribute.maxStackSize = classReader.ReadUint16()
 	codeAttribute.maxNumberOfLocalVariables = classReader.ReadUint16()
 	codeLength := classReader.ReadUint32()
 	codeAttribute.code = classReader.ReadBytes(codeLength)
@@ -36,8 +36,8 @@ func (codeAttribute *CodeAttribute) Read(classReader *ClassReader) {
 	codeAttribute.attributes = readAttributes(classReader, codeAttribute.constantPool)
 }
 
-func (codeAttribute *CodeAttribute) GetMaxStackDepth() uint {
-	return uint(codeAttribute.maxStackDepth)
+func (codeAttribute *CodeAttribute) GetMaxStackSize() uint {
+	return uint(codeAttribute.maxStackSize)
 }
 
 func (codeAttribute *CodeAttribute) GetMaxNumberOfLocalVariables() uint {

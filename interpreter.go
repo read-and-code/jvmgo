@@ -12,7 +12,7 @@ import (
 func interpret(methodInfo *classfile.MemberInfo) {
 	codeAttribute := methodInfo.GetCodeAttribute()
 	thread := runtime_data_area.NewThread()
-	frame := thread.NewFrame(codeAttribute.GetMaxNumberOfLocalVariables(), codeAttribute.GetMaxStackDepth())
+	frame := thread.NewFrame(codeAttribute.GetMaxNumberOfLocalVariables(), codeAttribute.GetMaxStackSize())
 
 	thread.PushFrame(frame)
 

@@ -1,6 +1,10 @@
 package runtime_data_area
 
-import "math"
+import (
+	"math"
+
+	"github.com/Frederick-S/jvmgo/runtime_data_area/heap"
+)
 
 type LocalVariables []Variable
 
@@ -54,10 +58,10 @@ func (localVariables LocalVariables) GetDoubleValue(index uint) float64 {
 	return math.Float64frombits(float64Bits)
 }
 
-func (localVariables LocalVariables) SetReferenceValue(index uint, referenceValue *Object) {
+func (localVariables LocalVariables) SetReferenceValue(index uint, referenceValue *heap.Object) {
 	localVariables[index].referenceValue = referenceValue
 }
 
-func (localVariables LocalVariables) GetReferenceValue(index uint) *Object {
+func (localVariables LocalVariables) GetReferenceValue(index uint) *heap.Object {
 	return localVariables[index].referenceValue
 }

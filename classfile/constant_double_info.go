@@ -17,3 +17,7 @@ func (constantDoubleInfo *ConstantDoubleInfo) Read(classReader *ClassReader) {
 	bytes := classReader.ReadUint64()
 	constantDoubleInfo.value = math.Float64frombits(bytes)
 }
+
+func (constantDoubleInfo *ConstantDoubleInfo) GetValue() float64 {
+	return constantDoubleInfo.value
+}

@@ -14,3 +14,7 @@ func (constantIntegerInfo *ConstantIntegerInfo) Read(classReader *ClassReader) {
 	bytes := classReader.ReadUint32()
 	constantIntegerInfo.value = int32(bytes)
 }
+
+func (constantIntegerInfo *ConstantIntegerInfo) GetValue() int32 {
+	return constantIntegerInfo.value
+}

@@ -16,3 +16,7 @@ func (constantFloatInfo *ConstantFloatInfo) Read(classReader *ClassReader) {
 	bytes := classReader.ReadUint32()
 	constantFloatInfo.value = math.Float32frombits(bytes)
 }
+
+func (constantFloatInfo *ConstantFloatInfo) GetValue() float32 {
+	return constantFloatInfo.value
+}

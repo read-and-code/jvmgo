@@ -68,3 +68,14 @@ func (memberInfo *MemberInfo) GetCodeAttribute() *CodeAttribute {
 
 	return nil
 }
+
+func (memberInfo *MemberInfo) GetConstantValueAttribute() *ConstantValueAttribute {
+	for _, attribute := range memberInfo.attributes {
+		switch attribute.(type) {
+		case *ConstantValueAttribute:
+			return attribute.(*ConstantValueAttribute)
+		}
+	}
+
+	return nil
+}

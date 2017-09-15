@@ -5,38 +5,38 @@ import (
 	"path/filepath"
 )
 
-type Classloader struct {
+type ClassFinder struct {
 	bootstrapClasspathEntry  ClasspathEntry
 	extensionsClasspathEntry ClasspathEntry
 	userClasspathEntry       ClasspathEntry
 }
 
-func Parse(jrePath, classpath string) *Classloader {
-	classloader := &Classloader{}
-	classloader.parseBootstrapAndExtensionsClasspathEntry(jrePath)
-	classloader.parseUserClasspathEntry(classpath)
+func Parse(jrePath, classpath string) *ClassFinder {
+	classFinder := &ClassFinder{}
+	classFinder.parseBootstrapAndExtensionsClasspathEntry(jrePath)
+	classFinder.parseUserClasspathEntry(classpath)
 
-	return classloader
+	return classFinder
 }
 
-func (classloader *Classloader) parseBootstrapAndExtensionsClasspathEntry(jrePath string) {
+func (classFinder *ClassFinder) parseBootstrapAndExtensionsClasspathEntry(jrePath string) {
 	jreDirectory := getJreDirectory(jrePath)
 
 	// jre/lib/*
 	jreLibPath := filepath.Join(jreDirectory, "lib", "*")
-	classloader.bootstrapClasspathEntry = NewWildcardClasspathEntry(jreLibPath)
+	classFinder.bootstrapClasspathEntry = NewWildcardClasspathEntry(jreLibPath)
 
 	// jre/lib/ext/*
 	jreExtensionsPath := filepath.Join(jreDirectory, "lib", "ext", "*")
-	classloader.extensionsClasspathEntry = NewWildcardClasspathEntry(jreExtensionsPath)
+	classFinder.extensionsClasspathEntry = NewWildcardClasspathEntry(jreExtensionsPath)
 }
 
-func (classloader *Classloader) parseUserClasspathEntry(classpath string) {
+func (classFinder *ClassFinder) parseUserClasspathEntry(classpath string) {
 	if classpath == "" {
 		classpath = "."
 	}
 
-	classloader.userClasspathEntry = NewClasspathEntry(classpath)
+	classFinder.userClasspathEntry = NewClasspathEntry(classpath)
 }
 
 func getJreDirectory(jrePath string) string {
@@ -67,20 +67,20 @@ func isDirectoryExists(path string) bool {
 	return true
 }
 
-func (classloader *Classloader) ReadClass(className string) ([]byte, ClasspathEntry, error) {
+func (classFinder *ClassFinder) ReadClass(className string) ([]byte, ClasspathEntry, error) {
 	className = className + ".class"
 
-	data, classpathEntry, err := classloader.bootstrapClasspathEntry.ReadClass(className)
+	data, classpathEntry, err := classFinder.bootstrapClasspathEntry.ReadClass(className)
 
 	if err == nil {
 		return data, classpathEntry, err
 	}
 
-	data, classpathEntry, err = classloader.extensionsClasspathEntry.ReadClass(className)
+	data, classpathEntry, err = classFinder.extensionsClasspathEntry.ReadClass(className)
 
 	if err == nil {
 		return data, classpathEntry, err
 	}
 
-	return classloader.userClasspathEntry.ReadClass(className)
+	return classFinder.userClasspathEntry.ReadClass(className)
 }
