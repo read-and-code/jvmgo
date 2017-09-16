@@ -11,11 +11,12 @@ type Frame struct {
 	nextPC         int
 }
 
-func newFrame(thread *Thread, maxNumberOfLocalVariables, maxStackSize uint) *Frame {
+func newFrame(thread *Thread, method *heap.Method) *Frame {
 	return &Frame{
 		thread:         thread,
-		localVariables: newLocalVariables(maxNumberOfLocalVariables),
-		operandStack:   newOperandStack(maxStackSize),
+		method:         method,
+		localVariables: newLocalVariables(method.GetMaxNumberOfLocalVariables()),
+		operandStack:   newOperandStack(method.GetMaxStackSize()),
 	}
 }
 

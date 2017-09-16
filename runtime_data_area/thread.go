@@ -1,5 +1,7 @@
 package runtime_data_area
 
+import "github.com/Frederick-S/jvmgo/runtime_data_area/heap"
+
 type Thread struct {
 	pc       int
 	jvmStack *JVMStack
@@ -31,6 +33,6 @@ func (thread *Thread) GetCurrentFrame() *Frame {
 	return thread.jvmStack.GetTopFrame()
 }
 
-func (thread *Thread) NewFrame(maxNumberOfLocalVariables, maxStackSize uint) *Frame {
-	return newFrame(thread, maxNumberOfLocalVariables, maxStackSize)
+func (thread *Thread) NewFrame(method *heap.Method) *Frame {
+	return newFrame(thread, method)
 }

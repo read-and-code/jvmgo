@@ -3,32 +3,30 @@ package main
 import (
 	"fmt"
 
-	"github.com/Frederick-S/jvmgo/classfile"
 	"github.com/Frederick-S/jvmgo/instructions"
 	"github.com/Frederick-S/jvmgo/instructions/base_instructions"
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
+	"github.com/Frederick-S/jvmgo/runtime_data_area/heap"
 )
 
-func interpret(methodInfo *classfile.MemberInfo) {
-	codeAttribute := methodInfo.GetCodeAttribute()
+func interpret(method *heap.Method) {
 	thread := runtime_data_area.NewThread()
-	frame := thread.NewFrame(codeAttribute.GetMaxNumberOfLocalVariables(), codeAttribute.GetMaxStackSize())
-
+	frame := thread.NewFrame(method)
 	thread.PushFrame(frame)
 
 	defer catchError(frame)
 
-	loop(thread, codeAttribute.GetCode())
+	loop(thread, method.GetCode())
 }
 
 func catchError(frame *runtime_data_area.Frame) {
 	r := recover()
 
 	if r != nil {
-		fmt.Printf("LocalVariables: %v\n", frame.GetLocalVariables())
-		fmt.Printf("OperandStack: %v\n", frame.GetOperandStack())
+		// fmt.Printf("LocalVariables: %v\n", frame.GetLocalVariables())
+		// fmt.Printf("OperandStack: %v\n", frame.GetOperandStack())
 
-		panic(r)
+		// panic(r)
 	}
 }
 

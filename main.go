@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Frederick-S/jvmgo/classfile"
 	"github.com/Frederick-S/jvmgo/classpath"
+	"github.com/Frederick-S/jvmgo/runtime_data_area/heap"
 )
 
 func main() {
@@ -26,39 +26,14 @@ func main() {
 
 func startJVM(cmd *Cmd) {
 	classFinder := classpath.Parse(cmd.jrePath, cmd.classpath)
+	classLoader := heap.NewClassLoader(classFinder)
 	className := strings.Replace(cmd.className, ".", "/", -1)
-	classFile := loadClass(className, classFinder)
-	mainMethod := getMainMethod(classFile)
+	mainClass := classLoader.LoadClass(className)
+	mainMethod := mainClass.GetMainMethod()
 
 	if mainMethod != nil {
 		interpret(mainMethod)
 	} else {
 		fmt.Printf("Main method not found in class %s\n", cmd.className)
 	}
-}
-
-func loadClass(className string, classFinder *classpath.ClassFinder) *classfile.ClassFile {
-	classData, _, err := classFinder.ReadClass(className)
-
-	if err != nil {
-		panic(err)
-	}
-
-	classFile, err := classfile.Parse(classData)
-
-	if err != nil {
-		panic(err)
-	}
-
-	return classFile
-}
-
-func getMainMethod(classFile *classfile.ClassFile) *classfile.MemberInfo {
-	for _, method := range classFile.GetMethods() {
-		if method.GetName() == "main" && method.GetDescriptor() == "([Ljava/lang/String;)V" {
-			return method
-		}
-	}
-
-	return nil
 }
