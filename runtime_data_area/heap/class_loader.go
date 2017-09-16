@@ -96,9 +96,86 @@ func linkClass(class *Class) {
 }
 
 func verifyClass(class *Class) {
-
 }
 
 func prepareClass(class *Class) {
+	assignInstanceFieldsVariableIndices(class)
+	assignStaticFieldsVariableIndices(class)
+	initializeStaticFinalVariables(class)
+}
 
+func assignInstanceFieldsVariableIndices(class *Class) {
+	index := uint(0)
+
+	if class.superClass != nil {
+		index = class.superClass.instanceVariablesCount
+	}
+
+	for _, field := range class.fields {
+		if !field.IsStatic() {
+			field.variableIndex = index
+
+			if field.IsLongOrDouble() {
+				index += 2
+			} else {
+				index++
+			}
+		}
+	}
+
+	class.instanceVariablesCount = index
+}
+
+func assignStaticFieldsVariableIndices(class *Class) {
+	index := uint(0)
+
+	for _, field := range class.fields {
+		if field.IsStatic() {
+			field.variableIndex = index
+
+			if field.IsLongOrDouble() {
+				index += 2
+			} else {
+				index++
+			}
+		}
+	}
+
+	class.staticVariablesCount = index
+}
+
+func initializeStaticFinalVariables(class *Class) {
+	class.staticVariables = newVariables(class.staticVariablesCount)
+
+	for _, field := range class.fields {
+		if field.IsStatic() && field.IsFinal() {
+			initializeStaticFinalVariable(class, field)
+		}
+	}
+}
+
+func initializeStaticFinalVariable(class *Class, field *Field) {
+	staticVariables := class.staticVariables
+	constantPool := class.constantPool
+	constantValueIndex := field.GetConstantValueIndex()
+	variableIndex := field.GetVariableIndex()
+
+	if constantValueIndex > 0 {
+		switch field.GetDescriptor() {
+		case "Z", "B", "C", "S", "I":
+			value := constantPool.GetConstant(constantValueIndex).(int32)
+			staticVariables.SetIntegerValue(variableIndex, value)
+		case "J":
+			value := constantPool.GetConstant(constantValueIndex).(int64)
+			staticVariables.SetLongValue(variableIndex, value)
+		case "F":
+			value := constantPool.GetConstant(constantValueIndex).(float32)
+			staticVariables.SetFloatValue(variableIndex, value)
+		case "D":
+			value := constantPool.GetConstant(constantValueIndex).(float64)
+			staticVariables.SetDoubleValue(variableIndex, value)
+		case "Ljava/lang/String;":
+			panic("TODO")
+		}
+	}
 }

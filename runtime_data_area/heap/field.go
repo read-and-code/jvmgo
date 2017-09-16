@@ -5,6 +5,7 @@ import "github.com/Frederick-S/jvmgo/classfile"
 type Field struct {
 	ClassMember
 	constantValueIndex uint
+	variableIndex      uint
 }
 
 func newFields(class *Class, memberInfos []*classfile.MemberInfo) []*Field {
@@ -42,6 +43,10 @@ func (field *Field) IsEnum() bool {
 
 func (field *Field) GetConstantValueIndex() uint {
 	return field.constantValueIndex
+}
+
+func (field *Field) GetVariableIndex() uint {
+	return field.variableIndex
 }
 
 func (field *Field) IsLongOrDouble() bool {

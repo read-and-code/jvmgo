@@ -7,16 +7,19 @@ import (
 )
 
 type Class struct {
-	accessFlags    uint16
-	name           string
-	superClassName string
-	interfaceNames []string
-	constantPool   *ConstantPool
-	fields         []*Field
-	methods        []*Method
-	classLoader    *ClassLoader
-	superClass     *Class
-	interfaces     []*Class
+	accessFlags            uint16
+	name                   string
+	superClassName         string
+	interfaceNames         []string
+	constantPool           *ConstantPool
+	fields                 []*Field
+	methods                []*Method
+	classLoader            *ClassLoader
+	superClass             *Class
+	interfaces             []*Class
+	instanceVariablesCount uint
+	staticVariablesCount   uint
+	staticVariables        Variables
 }
 
 func newClass(classFile *classfile.ClassFile) *Class {
