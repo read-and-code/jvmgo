@@ -142,3 +142,11 @@ func (class *Class) GetStaticMethod(methodName, descriptor string) *Method {
 
 	return nil
 }
+
+func (class *Class) GetStaticVariables() Variables {
+	return class.staticVariables
+}
+
+func (class *Class) NewObject() *Object {
+	return newObject(class)
+}

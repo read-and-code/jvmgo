@@ -1,10 +1,13 @@
 package runtime_data_area
 
+import "github.com/Frederick-S/jvmgo/runtime_data_area/heap"
+
 type Frame struct {
 	lower          *Frame
 	localVariables LocalVariables
 	operandStack   *OperandStack
 	thread         *Thread
+	method         *heap.Method
 	nextPC         int
 }
 
@@ -22,6 +25,10 @@ func (frame *Frame) GetLocalVariables() LocalVariables {
 
 func (frame *Frame) GetOperandStack() *OperandStack {
 	return frame.operandStack
+}
+
+func (frame *Frame) GetMethod() *heap.Method {
+	return frame.method
 }
 
 func (frame *Frame) GetThread() *Thread {
