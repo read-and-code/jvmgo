@@ -23,10 +23,10 @@ func catchError(frame *runtime_data_area.Frame) {
 	r := recover()
 
 	if r != nil {
-		// fmt.Printf("LocalVariables: %v\n", frame.GetLocalVariables())
-		// fmt.Printf("OperandStack: %v\n", frame.GetOperandStack())
+		fmt.Printf("LocalVariables: %v\n", frame.GetLocalVariables())
+		fmt.Printf("OperandStack: %v\n", frame.GetOperandStack())
 
-		// panic(r)
+		panic(r)
 	}
 }
 

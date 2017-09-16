@@ -12,7 +12,7 @@ func main() {
 	//cmd := parseCmd()
 	cmd := &Cmd{
 		jrePath:   "/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/jre",
-		className: "./java/Sum",
+		className: "./java/MyClass",
 	}
 
 	if cmd.showVersion {
