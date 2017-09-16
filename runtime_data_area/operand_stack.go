@@ -22,39 +22,39 @@ func newOperandStack(maxStackSize uint) *OperandStack {
 }
 
 func (operandStack *OperandStack) PushIntegerValue(value int32) {
-	operandStack.operands[operandStack.size].value = value
+	operandStack.operands[operandStack.size].numericalValue = value
 	operandStack.size++
 }
 
 func (operandStack *OperandStack) PopIntegerValue() int32 {
 	operandStack.size--
 
-	return operandStack.operands[operandStack.size].value
+	return operandStack.operands[operandStack.size].numericalValue
 }
 
 func (operandStack *OperandStack) PushFloatValue(value float32) {
 	float32Bits := math.Float32bits(value)
-	operandStack.operands[operandStack.size].value = int32(float32Bits)
+	operandStack.operands[operandStack.size].numericalValue = int32(float32Bits)
 	operandStack.size++
 }
 
 func (operandStack *OperandStack) PopFloatValue() float32 {
 	operandStack.size--
-	float32Bits := uint32(operandStack.operands[operandStack.size].value)
+	float32Bits := uint32(operandStack.operands[operandStack.size].numericalValue)
 
 	return math.Float32frombits(float32Bits)
 }
 
 func (operandStack *OperandStack) PushLongValue(value int64) {
-	operandStack.operands[operandStack.size].value = int32(value)
-	operandStack.operands[operandStack.size+1].value = int32(value >> 32)
+	operandStack.operands[operandStack.size].numericalValue = int32(value)
+	operandStack.operands[operandStack.size+1].numericalValue = int32(value >> 32)
 	operandStack.size += 2
 }
 
 func (operandStack *OperandStack) PopLongValue() int64 {
 	operandStack.size -= 2
-	low := uint32(operandStack.operands[operandStack.size].value)
-	high := uint32(operandStack.operands[operandStack.size+1].value)
+	low := uint32(operandStack.operands[operandStack.size].numericalValue)
+	high := uint32(operandStack.operands[operandStack.size+1].numericalValue)
 
 	return int64(high)<<32 | int64(low)
 }
