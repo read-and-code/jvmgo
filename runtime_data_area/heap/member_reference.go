@@ -4,7 +4,7 @@ import "github.com/Frederick-S/jvmgo/classfile"
 
 type MemberReference struct {
 	SymbolicReference
-	name string
+	name       string
 	descriptor string
 }
 
