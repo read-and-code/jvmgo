@@ -6,11 +6,7 @@ import (
 )
 
 // ladd
-// Add long.
-// Both value1 and value2 must be of type long.
-// The values are popped from the operand stack.
-// The long result is value1 + value2.
-// The result is pushed onto the operand stack.
+// Add long
 type LAdd struct {
 	base_instructions.NoOperandsInstruction
 }

@@ -6,7 +6,7 @@ import (
 )
 
 // lconst_1
-// Push the long constant <l> (1) onto the operand stack.
+// Push the long constant <l> (1) onto the operand stack
 type LConst1 struct {
 	base_instructions.NoOperandsInstruction
 }

@@ -6,12 +6,7 @@ import (
 )
 
 // lshr
-// Arithmetic shift right long.
-// The value1 must be of type long, and value2 must be of type int.
-// The values are popped from the operand stack.
-// A long result is calculated by shifting value1 right by s bit positions,
-// with sign extension, where s is the value of the low 6 bits of value2.
-// The result is pushed onto the operand stack.
+// Arithmetic shift right long
 type LShr struct {
 	base_instructions.NoOperandsInstruction
 }

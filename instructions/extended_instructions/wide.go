@@ -9,7 +9,7 @@ import (
 )
 
 // wide
-// Extend local variable index by additional bytes.
+// Extend local variable index by additional bytes
 type Wide struct {
 	modifiedInstruction base_instructions.Instruction
 }

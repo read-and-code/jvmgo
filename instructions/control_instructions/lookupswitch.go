@@ -6,7 +6,7 @@ import (
 )
 
 // lookupswitch
-// Access jump table by key match and jump.
+// Access jump table by key match and jump
 type LookupSwitch struct {
 	defaultOffset             int32
 	numberOfMatchOffsetPairss int32

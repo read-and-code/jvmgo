@@ -6,10 +6,7 @@ import (
 )
 
 // i2l
-// Convert int to long.
-// The value on the top of the operand stack must be of type int.
-// It is popped from the operand stack and sign-extended to a long result.
-// That result is pushed onto the operand stack.
+// Convert int to long
 type I2l struct {
 	base_instructions.NoOperandsInstruction
 }

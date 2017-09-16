@@ -6,11 +6,7 @@ import (
 )
 
 // fneg
-// Negate float.
-// The value must be of type float.
-// It is popped from the operand stack and undergoes value set conversion, resulting in value'.
-// The float result is the arithmetic negation of value'.
-// This result is pushed onto the operand stack.
+// Negate float
 type FNeg struct {
 	base_instructions.NoOperandsInstruction
 }

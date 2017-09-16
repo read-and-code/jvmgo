@@ -6,7 +6,7 @@ import (
 )
 
 // dconst_1
-// Push the double constant <d> (1.0) onto the operand stack.
+// Push the double constant <d> (1.0) onto the operand stack
 type DConst1 struct {
 	base_instructions.NoOperandsInstruction
 }

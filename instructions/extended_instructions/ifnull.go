@@ -6,7 +6,7 @@ import (
 )
 
 // ifnull
-// Branch if reference is null.
+// Branch if reference is null
 type IfNull struct {
 	base_instructions.BranchInstruction
 }

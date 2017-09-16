@@ -6,10 +6,7 @@ import (
 )
 
 // aload
-// Load reference from local variable.
-// The index is an unsigned byte that must be an index into the local variable array of the current frame.
-// The local variable at index must contain a reference.
-// The objectref in the local variable at index is pushed onto the operand stack.
+// Load reference from local variable
 type ALoad struct {
 	base_instructions.Index8Instruction
 }

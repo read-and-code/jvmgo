@@ -6,11 +6,7 @@ import (
 )
 
 // lsub
-// Subtract long.
-// Both value1 and value2 must be of type long.
-// The values are popped from the operand stack.
-// The long result is value1 - value2.
-// The result is pushed onto the operand stack.
+// Subtract long
 type LSub struct {
 	base_instructions.NoOperandsInstruction
 }

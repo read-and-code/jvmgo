@@ -6,11 +6,7 @@ import (
 )
 
 // lstore
-// Store long into local variable.
-// The index is an unsigned byte.
-// Both index and index+1 must be indices into the local variable array of the current frame.
-// The value on the top of the operand stack must be of type long.
-// It is popped from the operand stack, and the local variables at index and index+1 are set to value.
+// Store long into local variable
 type LStore struct {
 	base_instructions.Index8Instruction
 }

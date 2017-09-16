@@ -6,10 +6,7 @@ import (
 )
 
 // lload_1
-// Load long from local variable.
-// Both <n> and <n>+1 must be indices into the local variable array of the current frame.
-// The local variable at <n> must contain a long.
-// The value of the local variable at <n> is pushed onto the operand stack.
+// Load long from local variable
 type LLoad1 struct {
 	base_instructions.NoOperandsInstruction
 }

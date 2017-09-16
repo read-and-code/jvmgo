@@ -6,8 +6,7 @@ import (
 )
 
 // bipush
-// Push byte. The immediate byte is sign-extended to an int value.
-// That value is pushed onto the operand stack.
+// Push byte
 type BIPush struct {
 	value int8
 }

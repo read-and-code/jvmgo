@@ -6,10 +6,7 @@ import (
 )
 
 // i2d
-// Convert int to double.
-// The value on the top of the operand stack must be of type int.
-// It is popped from the operand stack and converted to a double result.
-// The result is pushed onto the operand stack.
+// Convert int to double
 type I2d struct {
 	base_instructions.NoOperandsInstruction
 }

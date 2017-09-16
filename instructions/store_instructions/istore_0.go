@@ -6,10 +6,7 @@ import (
 )
 
 // istore_0
-// Store int into local variable.
-// The <n> must be an index into the local variable array of the current frame.
-// The value on the top of the operand stack must be of type int.
-// It is popped from the operand stack, and the value of the local variable at <n> is set to value.
+// Store int into local variable
 type IStore0 struct {
 	base_instructions.NoOperandsInstruction
 }

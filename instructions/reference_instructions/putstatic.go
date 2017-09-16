@@ -7,12 +7,7 @@ import (
 )
 
 // putstatic
-// Set static field in class.
-// The unsigned indexbyte1 and indexbyte2 are used to construct an index into the run-time constant pool of the current class,
-// where the value of the index is (indexbyte1 << 8) | indexbyte2.
-// The run-time constant pool item at that index must be a symbolic reference to a field,
-// which gives the name and descriptor of the field as well as a symbolic reference to the class or interface in which the field is to be found.
-// The referenced field is resolved.
+// Set static field in class
 type PutStatic struct {
 	base_instructions.Index16Instruction
 }

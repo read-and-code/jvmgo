@@ -6,11 +6,7 @@ import (
 )
 
 // f2d
-// Convert float to double.
-// The value on the top of the operand stack must be of type float.
-// It is popped from the operand stack and undergoes value set conversion, resulting in value'.
-// Then value' is converted to a double result.
-// This result is pushed onto the operand stack.
+// Convert float to double
 type F2d struct {
 	base_instructions.NoOperandsInstruction
 }

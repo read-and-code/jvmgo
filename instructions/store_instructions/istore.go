@@ -6,10 +6,7 @@ import (
 )
 
 // istore
-// Store int into local variable.
-// The index is an unsigned byte that must be an index into the local variable array of the current frame.
-// The value on the top of the operand stack must be of type int.
-// It is popped from the operand stack, and the value of the local variable at index is set to value.
+// Store int into local variable
 type IStore struct {
 	base_instructions.Index8Instruction
 }

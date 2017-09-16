@@ -6,11 +6,7 @@ import (
 )
 
 // lxor
-// Boolean XOR long.
-// Both value1 and value2 must be of type long.
-// They are popped from the operand stack.
-// A long result is calculated by taking the bitwise exclusive OR of value1 and value2.
-// The result is pushed onto the operand stack.
+// Boolean XOR long
 type LXor struct {
 	base_instructions.NoOperandsInstruction
 }

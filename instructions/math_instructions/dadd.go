@@ -6,10 +6,7 @@ import (
 )
 
 // dadd
-// Add double.
-// Both value1 and value2 must be of type double.
-// The values are popped from the operand stack and undergo value set conversion, resulting in value1' and value2'.
-// The double result is value1' + value2'. The result is pushed onto the operand stack.
+// Add double
 type DAdd struct {
 	base_instructions.NoOperandsInstruction
 }

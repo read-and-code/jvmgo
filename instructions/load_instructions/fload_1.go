@@ -6,10 +6,7 @@ import (
 )
 
 // fload_1
-// Load float from local variable.
-// The <n> must be an index into the local variable array of the current frame.
-// The local variable at <n> must contain a float.
-// The value of the local variable at <n> is pushed onto the operand stack.
+// Load float from local variable
 type FLoad1 struct {
 	base_instructions.NoOperandsInstruction
 }

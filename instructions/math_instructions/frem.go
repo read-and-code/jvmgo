@@ -8,10 +8,7 @@ import (
 )
 
 // frem
-// Remainder float.
-// Both value1 and value2 must be of type float.
-// The values are popped from the operand stack and undergo value set conversion, resulting in value1' and value2'.
-// The result is calculated and pushed onto the operand stack as a float.
+// Remainder float
 type FRem struct {
 	base_instructions.NoOperandsInstruction
 }

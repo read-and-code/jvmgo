@@ -6,10 +6,7 @@ import (
 )
 
 // i2b
-// Convert int to byte.
-// The value on the top of the operand stack must be of type int.
-// It is popped from the operand stack, truncated to a byte, then sign-extended to an int result.
-// That result is pushed onto the operand stack.
+// Convert int to byte
 type I2b struct {
 	base_instructions.NoOperandsInstruction
 }

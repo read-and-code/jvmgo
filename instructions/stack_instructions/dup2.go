@@ -6,7 +6,7 @@ import (
 )
 
 // dup2
-// Duplicate the top one or two values on the operand stack and push the duplicated value or values back onto the operand stack in the original order.
+// Duplicate the top one or two values on the operand stack and push the duplicated value or values back onto the operand stack in the original order
 type Dup2 struct {
 	base_instructions.NoOperandsInstruction
 }

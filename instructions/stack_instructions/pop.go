@@ -6,7 +6,7 @@ import (
 )
 
 // pop
-// Pop the top value from the operand stack.
+// Pop the top value from the operand stack
 type Pop struct {
 	base_instructions.NoOperandsInstruction
 }

@@ -6,11 +6,7 @@ import (
 )
 
 // f2l
-// Convert float to long.
-// The value on the top of the operand stack must be of type float.
-// It is popped from the operand stack and undergoes value set conversion, resulting in value'.
-// Then value' is converted to a long result.
-// This result is pushed onto the operand stack.
+// Convert float to long
 type F2l struct {
 	base_instructions.NoOperandsInstruction
 }

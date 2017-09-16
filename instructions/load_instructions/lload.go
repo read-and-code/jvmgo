@@ -6,11 +6,7 @@ import (
 )
 
 // lload
-// Load long from local variable.
-// The index is an unsigned byte.
-// Both index and index+1 must be indices into the local variable array of the current frame.
-// The local variable at index must contain a long.
-// The value of the local variable at index is pushed onto the operand stack.
+// Load long from local variable
 type LLoad struct {
 	base_instructions.Index8Instruction
 }

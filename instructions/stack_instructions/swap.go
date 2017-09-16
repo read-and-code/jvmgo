@@ -6,7 +6,7 @@ import (
 )
 
 // swap
-// Swap the top two operand stack values.
+// Swap the top two operand stack values
 type Swap struct {
 	base_instructions.NoOperandsInstruction
 }

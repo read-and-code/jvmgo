@@ -6,11 +6,7 @@ import (
 )
 
 // lushr
-// Logical shift right long.
-// The value1 must be of type long, and value2 must be of type int.
-// The values are popped from the operand stack.
-// A long result is calculated by shifting value1 right logically (with zero extension) by the amount indicated by the low 6 bits of value2.
-// The result is pushed onto the operand stack.
+// Logical shift right long
 type LUshr struct {
 	base_instructions.NoOperandsInstruction
 }

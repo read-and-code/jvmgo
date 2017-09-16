@@ -6,7 +6,7 @@ import (
 )
 
 // tableswitch
-// Access jump table by index and jump.
+// Access jump table by index and jump
 type TableSwitch struct {
 	defaultOffset int32
 	low           int32

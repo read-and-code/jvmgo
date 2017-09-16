@@ -6,11 +6,7 @@ import (
 )
 
 // f2i
-// Convert float to int.
-// The value on the top of the operand stack must be of type float.
-// It is popped from the operand stack and undergoes value set conversion, resulting in value'.
-// Then value' is converted to an int result.
-// This result is pushed onto the operand stack.
+// Convert float to int
 type F2i struct {
 	base_instructions.NoOperandsInstruction
 }

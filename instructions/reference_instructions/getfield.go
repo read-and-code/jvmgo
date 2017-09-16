@@ -7,7 +7,7 @@ import (
 )
 
 // getfield
-// Fetch field from object.
+// Fetch field from object
 type GetField struct {
 	base_instructions.Index16Instruction
 }

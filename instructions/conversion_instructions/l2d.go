@@ -6,10 +6,7 @@ import (
 )
 
 // l2d
-// Convert long to double.
-// The value on the top of the operand stack must be of type long.
-// It is popped from the operand stack and converted to a double result using IEEE 754 round to nearest mode.
-// The result is pushed onto the operand stack.
+// Convert long to double
 type L2d struct {
 	base_instructions.NoOperandsInstruction
 }

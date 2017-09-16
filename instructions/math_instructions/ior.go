@@ -6,11 +6,7 @@ import (
 )
 
 // ior
-// Boolean OR int.
-// Both value1 and value2 must be of type int.
-// They are popped from the operand stack.
-// An int result is calculated by taking the bitwise inclusive OR of value1 and value2.
-// The result is pushed onto the operand stack.
+// Boolean OR int
 type IOr struct {
 	base_instructions.NoOperandsInstruction
 }

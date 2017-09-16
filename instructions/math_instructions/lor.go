@@ -6,11 +6,7 @@ import (
 )
 
 // lor
-// Boolean OR long.
-// Both value1 and value2 must be of type long.
-// They are popped from the operand stack.
-// A long result is calculated by taking the bitwise inclusive OR of value1 and value2.
-// The result is pushed onto the operand stack.
+// Boolean OR long
 type LOr struct {
 	base_instructions.NoOperandsInstruction
 }

@@ -6,11 +6,7 @@ import (
 )
 
 // ldiv
-// Divide long.
-// Both value1 and value2 must be of type long.
-// The values are popped from the operand stack.
-// The long result is the value of the Java programming language expression value1 / value2.
-// The result is pushed onto the operand stack.
+// Divide long
 type LDiv struct {
 	base_instructions.NoOperandsInstruction
 }

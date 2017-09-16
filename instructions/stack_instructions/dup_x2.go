@@ -6,7 +6,7 @@ import (
 )
 
 // dup_x2
-// Duplicate the top value on the operand stack and insert the duplicated value two or three values down in the operand stack.
+// Duplicate the top value on the operand stack and insert the duplicated value two or three values down in the operand stack
 type DupX2 struct {
 	base_instructions.NoOperandsInstruction
 }

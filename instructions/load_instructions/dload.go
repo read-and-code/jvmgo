@@ -6,11 +6,7 @@ import (
 )
 
 // dload
-// Load double from local variable.
-// The index is an unsigned byte.
-// Both index and index+1 must be indices into the local variable array of the current frame.
-// The local variable at index must contain a double.
-// The value of the local variable at index is pushed onto the operand stack.
+// Load double from local variable
 type DLoad struct {
 	base_instructions.Index8Instruction
 }

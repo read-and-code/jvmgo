@@ -8,10 +8,7 @@ import (
 )
 
 // drem
-// Remainder double.
-// Both value1 and value2 must be of type double.
-// The values are popped from the operand stack and undergo value set conversion, resulting in value1' and value2'.
-// The result is calculated and pushed onto the operand stack as a double.
+// Remainder double
 type DRem struct {
 	base_instructions.NoOperandsInstruction
 }

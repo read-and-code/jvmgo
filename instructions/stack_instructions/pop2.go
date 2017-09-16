@@ -6,7 +6,7 @@ import (
 )
 
 // pop2
-// Pop the top one or two values from the operand stack.
+// Pop the top one or two values from the operand stack
 type Pop2 struct {
 	base_instructions.NoOperandsInstruction
 }

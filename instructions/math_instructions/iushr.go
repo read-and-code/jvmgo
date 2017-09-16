@@ -6,12 +6,7 @@ import (
 )
 
 // iushr
-// Logical shift right int.
-// Both value1 and value2 must be of type int.
-// The values are popped from the operand stack.
-// An int result is calculated by shifting value1 right by s bit positions,
-// with zero extension, where s is the value of the low 5 bits of value2.
-// The result is pushed onto the operand stack.
+// Logical shift right int
 type IUshr struct {
 	base_instructions.NoOperandsInstruction
 }

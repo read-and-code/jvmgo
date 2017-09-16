@@ -6,7 +6,7 @@ import (
 )
 
 // aconst_null
-// Push the null object reference onto the operand stack.
+// Push the null object reference onto the operand stack
 type AConstNull struct {
 	base_instructions.NoOperandsInstruction
 }

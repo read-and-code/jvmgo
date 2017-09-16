@@ -6,11 +6,7 @@ import (
 )
 
 // iinc
-// Increment local variable by constant.
-// The index is an unsigned byte that must be an index into the local variable array of the current frame.
-// The const is an immediate signed byte.
-// The local variable at index must contain an int.
-// The value const is first sign-extended to an int, and then the local variable at index is incremented by that amount.
+// Increment local variable by constant
 type IInc struct {
 	Index    uint
 	Constant int32

@@ -6,11 +6,7 @@ import (
 )
 
 // land
-// Boolean AND long.
-// Both value1 and value2 must be of type long.
-// They are popped from the operand stack.
-// A long result is calculated by taking the bitwise AND of value1 and value2.
-// The result is pushed onto the operand stack.
+// Boolean AND long
 type LAnd struct {
 	base_instructions.NoOperandsInstruction
 }

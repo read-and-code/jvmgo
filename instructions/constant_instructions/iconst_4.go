@@ -6,7 +6,7 @@ import (
 )
 
 // iconst_4
-// Push the int constant <i> (4) onto the operand stack.
+// Push the int constant <i> (4) onto the operand stack
 type IConst4 struct {
 	base_instructions.NoOperandsInstruction
 }

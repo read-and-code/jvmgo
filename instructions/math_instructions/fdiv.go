@@ -6,11 +6,7 @@ import (
 )
 
 // fdiv
-// Divide float.
-// Both value1 and value2 must be of type float.
-// The values are popped from the operand stack and undergo value set conversion, resulting in value1' and value2'.
-// The float result is value1' / value2'.
-// The result is pushed onto the operand stack.
+// Divide float
 type FDiv struct {
 	base_instructions.NoOperandsInstruction
 }

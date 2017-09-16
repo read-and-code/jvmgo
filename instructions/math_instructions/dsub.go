@@ -6,11 +6,7 @@ import (
 )
 
 // dsub
-// Subtract double.
-// Both value1 and value2 must be of type double.
-// The values are popped from the operand stack and undergo value set conversion, resulting in value1' and value2'.
-// The double result is value1' - value2'.
-// The result is pushed onto the operand stack.
+// Subtract double
 type DSub struct {
 	base_instructions.NoOperandsInstruction
 }

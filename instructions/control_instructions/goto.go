@@ -5,6 +5,8 @@ import (
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
+// goto
+// Branch always
 type GoTo struct {
 	base_instructions.BranchInstruction
 }

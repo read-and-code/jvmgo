@@ -6,7 +6,7 @@ import (
 )
 
 // dup
-// Duplicate the top value on the operand stack and push the duplicated value onto the operand stack.
+// Duplicate the top value on the operand stack and push the duplicated value onto the operand stack
 type Dup struct {
 	base_instructions.NoOperandsInstruction
 }

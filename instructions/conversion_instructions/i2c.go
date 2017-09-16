@@ -6,10 +6,7 @@ import (
 )
 
 // i2c
-// Convert int to char.
-// The value on the top of the operand stack must be of type int.
-// It is popped from the operand stack, truncated to char, then zero-extended to an int result.
-// That result is pushed onto the operand stack.
+// Convert int to char
 type I2c struct {
 	base_instructions.NoOperandsInstruction
 }

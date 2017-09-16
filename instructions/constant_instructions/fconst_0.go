@@ -6,7 +6,7 @@ import (
 )
 
 // fconst_0
-// Push the float constant <f> (0.0) onto the operand stack.
+// Push the float constant <f> (0.0) onto the operand stack
 type FConst0 struct {
 	base_instructions.NoOperandsInstruction
 }

@@ -6,7 +6,7 @@ import (
 )
 
 // goto_w
-// Branch always (wide index).
+// Branch always (wide index)
 type GoToW struct {
 	offset int
 }

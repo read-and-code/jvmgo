@@ -6,11 +6,7 @@ import (
 )
 
 // ixor
-// Boolean XOR int.
-// Both value1 and value2 must be of type int.
-// They are popped from the operand stack.
-// An int result is calculated by taking the bitwise exclusive OR of value1 and value2.
-// The result is pushed onto the operand stack.
+// Boolean XOR int
 type IXor struct {
 	base_instructions.NoOperandsInstruction
 }

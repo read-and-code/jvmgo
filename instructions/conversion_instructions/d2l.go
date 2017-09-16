@@ -6,11 +6,7 @@ import (
 )
 
 // d2l
-// Convert double to long.
-// The value on the top of the operand stack must be of type double.
-// It is popped from the operand stack and undergoes value set conversion resulting in value'.
-// Then value' is converted to a long.
-// The result is pushed onto the operand stack.
+// Convert double to long
 type D2l struct {
 	base_instructions.NoOperandsInstruction
 }

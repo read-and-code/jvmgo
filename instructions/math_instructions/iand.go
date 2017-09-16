@@ -6,11 +6,7 @@ import (
 )
 
 // iand
-// Boolean AND int.
-// Both value1 and value2 must be of type int.
-// They are popped from the operand stack.
-// An int result is calculated by taking the bitwise AND (conjunction) of value1 and value2.
-// The result is pushed onto the operand stack.
+// Boolean AND int
 type IAnd struct {
 	base_instructions.NoOperandsInstruction
 }

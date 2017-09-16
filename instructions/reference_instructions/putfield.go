@@ -7,7 +7,7 @@ import (
 )
 
 // putfield
-// Set field in object.
+// Set field in object
 type PutField struct {
 	base_instructions.Index16Instruction
 }

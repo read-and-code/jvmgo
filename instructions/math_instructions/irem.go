@@ -6,11 +6,7 @@ import (
 )
 
 // irem
-// Remainder int.
-// Both value1 and value2 must be of type int.
-// The values are popped from the operand stack.
-// The int result is value1 - (value1 / value2) * value2.
-// The result is pushed onto the operand stack.
+// Remainder int
 type IRem struct {
 	base_instructions.NoOperandsInstruction
 }

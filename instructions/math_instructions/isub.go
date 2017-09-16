@@ -6,10 +6,7 @@ import (
 )
 
 // isub
-// Subtract int.
-// Both value1 and value2 must be of type int.
-// The values are popped from the operand stack.
-// The int result is value1 - value2. The result is pushed onto the operand stack.
+// Subtract int
 type ISub struct {
 	base_instructions.NoOperandsInstruction
 }

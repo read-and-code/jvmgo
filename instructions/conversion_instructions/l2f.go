@@ -6,10 +6,7 @@ import (
 )
 
 // l2f
-// Convert long to float.
-// The value on the top of the operand stack must be of type long.
-// It is popped from the operand stack and converted to a float result using IEEE 754 round to nearest mode.
-// The result is pushed onto the operand stack.
+// Convert long to float
 type L2f struct {
 	base_instructions.NoOperandsInstruction
 }

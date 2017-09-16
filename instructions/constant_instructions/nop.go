@@ -6,7 +6,7 @@ import (
 )
 
 // nop
-// Do nothing.
+// Do nothing
 type Nop struct {
 	base_instructions.NoOperandsInstruction
 }

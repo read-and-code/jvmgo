@@ -6,11 +6,7 @@ import (
 )
 
 // i2s
-// Convert int to short.
-// The value on the top of the operand stack must be of type int.
-// It is popped from the operand stack, truncated to a short,
-// then sign-extended to an int result.
-// That result is pushed onto the operand stack.
+// Convert int to short
 type I2s struct {
 	base_instructions.NoOperandsInstruction
 }

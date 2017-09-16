@@ -6,10 +6,7 @@ import (
 )
 
 // astore
-// Store reference into local variable.
-// The index is an unsigned byte that must be an index into the local variable array of the current frame.
-// The objectref on the top of the operand stack must be of type returnAddress or of type reference.
-// It is popped from the operand stack, and the value of the local variable at index is set to objectref.
+// Store reference into local variable
 type AStore struct {
 	base_instructions.Index8Instruction
 }

@@ -6,11 +6,7 @@ import (
 )
 
 // ineg
-// Negate int.
-// The value must be of type int.
-// It is popped from the operand stack.
-// The int result is the arithmetic negation of value, -value.
-// The result is pushed onto the operand stack.
+// Negate int
 type INeg struct {
 	base_instructions.NoOperandsInstruction
 }
