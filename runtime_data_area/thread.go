@@ -33,6 +33,10 @@ func (thread *Thread) GetCurrentFrame() *Frame {
 	return thread.jvmStack.GetTopFrame()
 }
 
+func (thread *Thread) GetTopFrame() *Frame {
+	return thread.jvmStack.GetTopFrame()
+}
+
 func (thread *Thread) NewFrame(method *heap.Method) *Frame {
 	return newFrame(thread, method)
 }
