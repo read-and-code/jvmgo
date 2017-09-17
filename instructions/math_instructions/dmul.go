@@ -13,8 +13,8 @@ type DMul struct {
 
 func (dMul *DMul) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	doubleValue1 := operandStack.PopDoubleValue()
 	doubleValue2 := operandStack.PopDoubleValue()
+	doubleValue1 := operandStack.PopDoubleValue()
 
 	operandStack.PushDoubleValue(doubleValue1 * doubleValue2)
 }

@@ -1,6 +1,6 @@
 public class Fibonacci {
     public static void main(String[] args) {
-        long result = fibonacci(30);
+        long result = fibonacci(10);
 
         System.out.println(result);
     }

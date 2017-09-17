@@ -13,9 +13,9 @@ type LShl struct {
 
 func (lShl *LShl) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	longValue1 := operandStack.PopLongValue()
-	longValue2 := operandStack.PopLongValue()
-	bitPositions := uint32(longValue2) & 0x3f
+	integerValue := operandStack.PopIntegerValue()
+	longValue := operandStack.PopLongValue()
+	bitPositions := uint32(integerValue) & 0x3f
 
-	operandStack.PushLongValue(longValue1 << bitPositions)
+	operandStack.PushLongValue(longValue << bitPositions)
 }

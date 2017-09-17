@@ -13,9 +13,9 @@ type IUshr struct {
 
 func (iUshr *IUshr) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	integerValue1 := operandStack.PopIntegerValue()
 	integerValue2 := operandStack.PopIntegerValue()
-	bitPositions := uint32(integerValue1) & 0x1f
+	integerValue1 := operandStack.PopIntegerValue()
+	bitPositions := uint32(integerValue2) & 0x1f
 
-	operandStack.PushIntegerValue(int32(uint32(integerValue2) >> bitPositions))
+	operandStack.PushIntegerValue(int32(uint32(integerValue1) >> bitPositions))
 }

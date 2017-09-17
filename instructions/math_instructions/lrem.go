@@ -13,8 +13,8 @@ type LRem struct {
 
 func (lRem *LRem) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	longValue1 := operandStack.PopLongValue()
 	longValue2 := operandStack.PopLongValue()
+	longValue1 := operandStack.PopLongValue()
 
 	if longValue2 == 0 {
 		panic("java.lang.ArithmeticException: / by zero")

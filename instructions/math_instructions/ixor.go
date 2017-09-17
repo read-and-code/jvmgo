@@ -13,8 +13,8 @@ type IXor struct {
 
 func (iXor *IXor) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	integerValue1 := operandStack.PopIntegerValue()
 	integerValue2 := operandStack.PopIntegerValue()
+	integerValue1 := operandStack.PopIntegerValue()
 
 	operandStack.PushIntegerValue(integerValue1 ^ integerValue2)
 }

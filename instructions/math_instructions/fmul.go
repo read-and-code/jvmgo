@@ -13,8 +13,8 @@ type FMul struct {
 
 func (fMul *FMul) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	floatValue1 := operandStack.PopFloatValue()
 	floatValue2 := operandStack.PopFloatValue()
+	floatValue1 := operandStack.PopFloatValue()
 
 	operandStack.PushFloatValue(floatValue1 * floatValue2)
 }

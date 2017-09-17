@@ -13,8 +13,8 @@ type LOr struct {
 
 func (lOr *LOr) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	longValue1 := operandStack.PopLongValue()
 	longValue2 := operandStack.PopLongValue()
+	longValue1 := operandStack.PopLongValue()
 
 	operandStack.PushLongValue(longValue1 | longValue2)
 }

@@ -13,8 +13,8 @@ type IShl struct {
 
 func (iShl *IShl) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	integerValue1 := operandStack.PopIntegerValue()
 	integerValue2 := operandStack.PopIntegerValue()
+	integerValue1 := operandStack.PopIntegerValue()
 	bitPositions := uint32(integerValue2) & 0x1f
 
 	operandStack.PushIntegerValue(integerValue1 << bitPositions)

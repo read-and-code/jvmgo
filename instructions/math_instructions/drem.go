@@ -15,8 +15,8 @@ type DRem struct {
 
 func (dRem *DRem) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	doubleValue1 := operandStack.PopDoubleValue()
 	doubleValue2 := operandStack.PopDoubleValue()
+	doubleValue1 := operandStack.PopDoubleValue()
 
 	operandStack.PushDoubleValue(math.Mod(doubleValue1, doubleValue2))
 }

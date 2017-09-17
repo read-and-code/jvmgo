@@ -15,8 +15,8 @@ type FRem struct {
 
 func (fRem *FRem) Execute(frame *runtime_data_area.Frame) {
 	operandStack := frame.GetOperandStack()
-	floatValue1 := operandStack.PopFloatValue()
 	floatValue2 := operandStack.PopFloatValue()
+	floatValue1 := operandStack.PopFloatValue()
 
 	operandStack.PushFloatValue(float32(math.Mod(float64(floatValue1), float64(floatValue2))))
 }
