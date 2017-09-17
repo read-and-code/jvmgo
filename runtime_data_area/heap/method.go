@@ -7,6 +7,7 @@ type Method struct {
 	maxStackSize              uint
 	maxNumberOfLocalVariables uint
 	code                      []byte
+	argumentsCount            uint
 }
 
 func newMethods(class *Class, memberInfos []*classfile.MemberInfo) []*Method {
@@ -17,6 +18,7 @@ func newMethods(class *Class, memberInfos []*classfile.MemberInfo) []*Method {
 		methods[i].class = class
 		methods[i].copyMemberInfo(memberInfo)
 		methods[i].copyAttributes(memberInfo)
+		methods[i].calculateArgumentsCount()
 	}
 
 	return methods
@@ -29,6 +31,23 @@ func (method *Method) copyAttributes(memberInfo *classfile.MemberInfo) {
 		method.maxStackSize = codeAttribute.GetMaxStackSize()
 		method.maxNumberOfLocalVariables = codeAttribute.GetMaxNumberOfLocalVariables()
 		method.code = codeAttribute.GetCode()
+	}
+}
+
+func (method *Method) calculateArgumentsCount() {
+	methodDescriptor := parseMethodDescriptor(method.descriptor)
+
+	for _, parameterType := range methodDescriptor.parameterTypes {
+		if parameterType == "J" || parameterType == "D" {
+			method.argumentsCount += 2
+		} else {
+			method.argumentsCount += 1
+		}
+	}
+
+	if !method.IsStatic() {
+		// `this` reference
+		method.argumentsCount++
 	}
 }
 
@@ -66,4 +85,8 @@ func (method *Method) GetMaxNumberOfLocalVariables() uint {
 
 func (method *Method) GetCode() []byte {
 	return method.code
+}
+
+func (method *Method) GetArgumentsCount() uint {
+	return method.argumentsCount
 }

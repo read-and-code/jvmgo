@@ -24,4 +24,32 @@ func (methodReference *MethodReference) GetResolvedMethod() *Method {
 }
 
 func (methodReference *MethodReference) ResolveMethodReference() {
+	class := methodReference.constantPool.class
+	resolvedClass := methodReference.GetResolvedClass()
+
+	if resolvedClass.IsInterface() {
+		panic("java.lang.IncompatibleClassChangeError")
+	}
+
+	method := lookupMethod(resolvedClass, methodReference.name, methodReference.descriptor)
+
+	if method == nil {
+		panic("java.lang.NoSuchMethodError")
+	}
+
+	if !method.IsAccessibleTo(class) {
+		panic("java.lang.IllegalAccessError")
+	}
+
+	methodReference.method = method
+}
+
+func lookupMethod(class *Class, name, descriptor string) *Method {
+	method := lookupMethodInClass(class, name, descriptor)
+
+	if method == nil {
+		method = lookupMethodInInterfaces(class.interfaces, name, descriptor)
+	}
+
+	return method
 }

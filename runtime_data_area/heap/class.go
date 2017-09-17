@@ -67,6 +67,10 @@ func (class *Class) IsEnum() bool {
 	return class.accessFlags&ACC_ENUM != 0
 }
 
+func (class *Class) GetName() string {
+	return class.name
+}
+
 func (class *Class) GetConstantPool() *ConstantPool {
 	return class.constantPool
 }
