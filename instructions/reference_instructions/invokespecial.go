@@ -19,7 +19,7 @@ func (invokeSpecial *InvokeSpecial) Execute(frame *runtime_data_area.Frame) {
 	resolvedClass := methodReference.GetResolvedClass()
 	resolvedMethod := methodReference.GetResolvedMethod()
 
-	if resolvedMethod.GetName() != "<init>" && resolvedMethod.GetClass() != resolvedClass {
+	if resolvedMethod.GetName() == "<init>" && resolvedMethod.GetClass() != resolvedClass {
 		panic("java.lang.NoSuchMethodError")
 	}
 
