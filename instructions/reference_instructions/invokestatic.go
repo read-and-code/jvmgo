@@ -29,5 +29,6 @@ func (invokeStatic *InvokeStatic) Execute(frame *runtime_data_area.Frame) {
 
 		return
 	}
+
 	base_instructions.InvokeMethod(frame, resolvedMethod)
 }

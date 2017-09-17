@@ -154,7 +154,7 @@ var (
 	fcmpg   = &comparison_instructions.FCmpg{}
 	dcmpl   = &comparison_instructions.DCmpl{}
 	dcmpg   = &comparison_instructions.DCmpg{}
-	ireturn = &control_instructions.Return{}
+	ireturn = &control_instructions.IReturn{}
 	lreturn = &control_instructions.LReturn{}
 	freturn = &control_instructions.FReturn{}
 	dreturn = &control_instructions.DReturn{}
