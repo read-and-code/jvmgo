@@ -17,6 +17,13 @@ func (new *New) Execute(frame *runtime_data_area.Frame) {
 	classReference := constantPool.GetConstant(new.Index).(*heap.ClassReference)
 	class := classReference.GetResolvedClass()
 
+	if !class.IsInitializationStarted() {
+		frame.RevertNextPC()
+		base_instructions.InitializeClass(frame.GetThread(), class)
+
+		return
+	}
+
 	if class.IsInterface() || class.IsAbstract() {
 		panic("java.lang.InstantiationError")
 	}

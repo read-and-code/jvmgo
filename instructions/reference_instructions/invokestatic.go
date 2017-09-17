@@ -30,5 +30,12 @@ func (invokeStatic *InvokeStatic) Execute(frame *runtime_data_area.Frame) {
 		return
 	}
 
+	if !class.IsInitializationStarted() {
+		frame.RevertNextPC()
+		base_instructions.InitializeClass(frame.GetThread(), class)
+
+		return
+	}
+
 	base_instructions.InvokeMethod(frame, resolvedMethod)
 }

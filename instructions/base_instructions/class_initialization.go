@@ -7,10 +7,11 @@ import (
 
 func InitializeClass(thread *runtime_data_area.Thread, class *heap.Class) {
 	class.StartInitialization()
-	executeClassInitializationMethod(thread, class)
+	scheduleClassInitializationMethod(thread, class)
+	initializeSuperClass(thread, class)
 }
 
-func executeClassInitializationMethod(thread *runtime_data_area.Thread, class *heap.Class) {
+func scheduleClassInitializationMethod(thread *runtime_data_area.Thread, class *heap.Class) {
 	classInitializationMethod := class.GetClassInitializationMethod()
 
 	if classInitializationMethod != nil {

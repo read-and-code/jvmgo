@@ -1,17 +1,17 @@
-public class MethodInvocationDemo implements Runnable {
+public class MethodInvocation implements Runnable {
     public static void main(String[] args) {
-        new MethodInvocationDemo().test();
+        new MethodInvocation().test();
     }
 
     public void test() {
         // invokestatic
-        MethodInvocationDemo.staticMethod();
+        MethodInvocation.staticMethod();
 
         // invokespecial
-        MethodInvocationDemo methodInvocationDemo = new MethodInvocationDemo();
+        MethodInvocation methodInvocation = new MethodInvocation();
 
         // invokespecial
-        methodInvocationDemo.instanceMethod();
+        methodInvocation.instanceMethod();
         
         // invokespecial
         super.equals(null);
@@ -20,7 +20,7 @@ public class MethodInvocationDemo implements Runnable {
         this.run();
 
         // invokeinterface
-        ((Runnable)methodInvocationDemo).run();
+        ((Runnable)methodInvocation).run();
     }
 
     public static void staticMethod() {
