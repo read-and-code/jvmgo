@@ -55,7 +55,7 @@ func (classLoader *ClassLoader) DefineClass(classData []byte) *Class {
 	class.classLoader = classLoader
 
 	resolveSuperClass(class)
-	resolveSuperClass(class)
+	resolveInterfaces(class)
 
 	classLoader.loadedClasses[class.name] = class
 
