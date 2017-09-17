@@ -12,8 +12,10 @@ func InvokeMethod(frame *runtime_data_area.Frame, method *heap.Method) {
 	newFrame := thread.NewFrame(method)
 	thread.PushFrame(newFrame)
 
-	if method.GetArgumentsCount() > 0 {
-		for i := method.GetArgumentsCount() - 1; i >= 0; i-- {
+	argumentsCount := int(method.GetArgumentsCount())
+
+	if argumentsCount > 0 {
+		for i := argumentsCount - 1; i >= 0; i-- {
 			operand := frame.GetOperandStack().PopOperand()
 
 			newFrame.GetLocalVariables().SetVariable(uint(i), operand)
