@@ -40,3 +40,7 @@ func (thread *Thread) GetTopFrame() *Frame {
 func (thread *Thread) NewFrame(method *heap.Method) *Frame {
 	return newFrame(thread, method)
 }
+
+func (thread *Thread) IsJVMStackEmpty() bool {
+	return thread.jvmStack.IsEmpty()
+}

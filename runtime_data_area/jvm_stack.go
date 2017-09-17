@@ -45,3 +45,7 @@ func (jvmStack *JVMStack) GetTopFrame() *Frame {
 
 	return jvmStack.topFrame
 }
+
+func (jvmStack *JVMStack) IsEmpty() bool {
+	return jvmStack.topFrame == nil
+}

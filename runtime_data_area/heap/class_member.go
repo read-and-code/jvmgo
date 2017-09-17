@@ -40,7 +40,7 @@ func (classMember *ClassMember) IsSynthetic() bool {
 }
 
 func (classMember *ClassMember) GetName() string {
-	return classMember.GetName()
+	return classMember.name
 }
 
 func (classMember *ClassMember) GetDescriptor() string {
