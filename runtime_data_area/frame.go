@@ -43,3 +43,7 @@ func (frame *Frame) GetNextPC() int {
 func (frame *Frame) SetNextPC(nextPC int) {
 	frame.nextPC = nextPC
 }
+
+func (frame *Frame) RevertNextPC() {
+	frame.nextPC = frame.thread.pc
+}

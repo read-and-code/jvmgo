@@ -93,3 +93,7 @@ func (operandStack *OperandStack) PopOperand() Variable {
 
 	return operandStack.operands[operandStack.size]
 }
+
+func (operandStack *OperandStack) GetReferenceValueBelowTop(n uint) *heap.Object {
+	return operandStack.operands[operandStack.size-1-n].referenceValue
+}

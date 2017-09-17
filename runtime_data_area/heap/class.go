@@ -7,19 +7,20 @@ import (
 )
 
 type Class struct {
-	accessFlags            uint16
-	name                   string
-	superClassName         string
-	interfaceNames         []string
-	constantPool           *ConstantPool
-	fields                 []*Field
-	methods                []*Method
-	classLoader            *ClassLoader
-	superClass             *Class
-	interfaces             []*Class
-	instanceVariablesCount uint
-	staticVariablesCount   uint
-	staticVariables        Variables
+	accessFlags             uint16
+	name                    string
+	superClassName          string
+	interfaceNames          []string
+	constantPool            *ConstantPool
+	fields                  []*Field
+	methods                 []*Method
+	classLoader             *ClassLoader
+	superClass              *Class
+	interfaces              []*Class
+	instanceVariablesCount  uint
+	staticVariablesCount    uint
+	staticVariables         Variables
+	isInitializationStarted bool
 }
 
 func newClass(classFile *classfile.ClassFile) *Class {
@@ -123,6 +124,14 @@ func (class *Class) IsSubInterfaceOf(otherInterface *Class) bool {
 	return false
 }
 
+func (class *Class) IsSuperClassOf(otherClass *Class) bool {
+	return otherClass.IsSubClassOf(class)
+}
+
+func (class *Class) GetSuperClass() *Class {
+	return class.superClass
+}
+
 func (class *Class) GetPackageName() string {
 	index := strings.LastIndex(class.name, "/")
 
@@ -149,6 +158,18 @@ func (class *Class) GetStaticMethod(methodName, descriptor string) *Method {
 
 func (class *Class) GetStaticVariables() Variables {
 	return class.staticVariables
+}
+
+func (class *Class) IsInitializationStarted() bool {
+	return class.isInitializationStarted
+}
+
+func (class *Class) StartInitialization() {
+	class.isInitializationStarted = true
+}
+
+func (class *Class) GetClassInitializationMethod() *Method {
+	return class.GetStaticMethod("<clinit>", "()V")
 }
 
 func (class *Class) NewObject() *Object {

@@ -1,6 +1,6 @@
 package heap
 
-func lookupMethodInClass(class *Class, name, descriptor string) *Method {
+func LookupMethodInClass(class *Class, name, descriptor string) *Method {
 	for currentClass := class; currentClass != nil; currentClass = currentClass.superClass {
 		for _, method := range currentClass.methods {
 			if method.name == name && method.descriptor == descriptor {
