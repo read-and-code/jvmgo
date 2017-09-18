@@ -26,7 +26,29 @@ func (classLoader *ClassLoader) LoadClass(className string) *Class {
 		return class
 	}
 
+	if className[0] == '[' {
+		return classLoader.LoadArrayClass(className)
+	}
+
 	return classLoader.LoadNonArrayClass(className)
+}
+
+func (classLoader *ClassLoader) LoadArrayClass(className string) *Class {
+	class := &Class{
+		accessFlags:             ACC_PUBLIC,
+		name:                    className,
+		classLoader:             classLoader,
+		isInitializationStarted: true,
+		superClass:              classLoader.LoadClass("java/lang/Object"),
+		interfaces: []*Class{
+			classLoader.LoadClass("java/lang/Cloneable"),
+			classLoader.LoadClass("java/io/Serializable"),
+		},
+	}
+
+	classLoader.loadedClasses[className] = class
+
+	return class
 }
 
 func (classLoader *ClassLoader) LoadNonArrayClass(className string) *Class {
