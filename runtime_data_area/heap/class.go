@@ -172,6 +172,16 @@ func (class *Class) GetClassInitializationMethod() *Method {
 	return class.GetStaticMethod("<clinit>", "()V")
 }
 
+func (class *Class) GetClassLoader() *ClassLoader {
+	return class.classLoader
+}
+
 func (class *Class) NewObject() *Object {
 	return newObject(class)
+}
+
+func (class *Class) GetArrayClass() *Class {
+	arrayClassName := getArrayClassName(class.name)
+
+	return class.classLoader.LoadClass(arrayClassName)
 }
