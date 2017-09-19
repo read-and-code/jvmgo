@@ -22,7 +22,7 @@ func ConvertGoStringToJavaString(classLoader *ClassLoader, goString string) *Obj
 	return javaString
 }
 
-func convertJavaStringToGoString(javaString *Object) string {
+func ConvertJavaStringToGoString(javaString *Object) string {
 	return convertUtf16ToString(javaString.GetReferenceValue("value", "[C").GetCharArray())
 }
 

@@ -66,6 +66,11 @@ func printLine(operandStack *runtime_data_area.OperandStack, descriptor string) 
 		fmt.Printf("%v\n", operandStack.PopLongValue())
 	case "(D)V":
 		fmt.Printf("%v\n", operandStack.PopDoubleValue())
+	case "(Ljava/lang/String;)V":
+		javaString := operandStack.PopReferenceValue()
+		goString := heap.ConvertJavaStringToGoString(javaString)
+
+		fmt.Println(goString)
 	default:
 		panic("println: " + descriptor)
 	}
