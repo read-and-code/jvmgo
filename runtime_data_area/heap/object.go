@@ -23,3 +23,15 @@ func (object *Object) GetFields() Variables {
 func (object *Object) IsInstanceOf(class *Class) bool {
 	return class.IsAssignableFrom(object.class)
 }
+
+func (object *Object) GetReferenceValue(name, descriptor string) *Object {
+	field := object.class.GetField(name, descriptor, false)
+
+	return object.data.(Variables).GetReferenceValue(field.variableIndex)
+}
+
+func (object *Object) SetReferenceValue(name, descriptor string, referenceValue *Object) {
+	field := object.class.GetField(name, descriptor, false)
+
+	object.data.(Variables).SetReferenceValue(field.variableIndex, referenceValue)
+}

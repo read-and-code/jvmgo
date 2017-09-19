@@ -197,7 +197,10 @@ func initializeStaticFinalVariable(class *Class, field *Field) {
 			value := constantPool.GetConstant(constantValueIndex).(float64)
 			staticVariables.SetDoubleValue(variableIndex, value)
 		case "Ljava/lang/String;":
-			panic("TODO")
+			goString := constantPool.GetConstant(constantValueIndex).(string)
+			javaString := ConvertGoStringToJavaString(class.GetClassLoader(), goString)
+
+			staticVariables.SetReferenceValue(variableIndex, javaString)
 		}
 	}
 }

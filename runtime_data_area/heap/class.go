@@ -205,6 +205,18 @@ func (class *Class) GetStaticMethod(methodName, descriptor string) *Method {
 	return nil
 }
 
+func (class *Class) GetField(name, descriptor string, isStatic bool) *Field {
+	for currentClass := class; currentClass != nil; currentClass = currentClass.superClass {
+		for _, field := range currentClass.fields {
+			if field.IsStatic() == isStatic && field.name == name && field.descriptor == descriptor {
+				return field
+			}
+		}
+	}
+
+	return nil
+}
+
 func (class *Class) StartInitialization() {
 	class.isInitializationStarted = true
 }
