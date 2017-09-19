@@ -36,6 +36,30 @@ func newClass(classFile *classfile.ClassFile) *Class {
 	return class
 }
 
+func (class *Class) GetName() string {
+	return class.name
+}
+
+func (class *Class) GetConstantPool() *ConstantPool {
+	return class.constantPool
+}
+
+func (class *Class) GetSuperClass() *Class {
+	return class.superClass
+}
+
+func (class *Class) GetClassLoader() *ClassLoader {
+	return class.classLoader
+}
+
+func (class *Class) GetStaticVariables() Variables {
+	return class.staticVariables
+}
+
+func (class *Class) IsInitializationStarted() bool {
+	return class.isInitializationStarted
+}
+
 func (class *Class) IsPublic() bool {
 	return class.accessFlags&ACC_PUBLIC != 0
 }
@@ -68,28 +92,41 @@ func (class *Class) IsEnum() bool {
 	return class.accessFlags&ACC_ENUM != 0
 }
 
-func (class *Class) GetName() string {
-	return class.name
-}
-
-func (class *Class) GetConstantPool() *ConstantPool {
-	return class.constantPool
-}
-
 func (class *Class) IsAccessibleTo(otherClass *Class) bool {
 	return class.IsPublic() || class.GetPackageName() == otherClass.GetPackageName()
 }
 
 func (class *Class) IsAssignableFrom(otherClass *Class) bool {
-	if class == otherClass {
+	if otherClass == class {
 		return true
 	}
 
-	if !class.IsInterface() {
-		return otherClass.IsSubClassOf(class)
-	} else {
-		return otherClass.IsImplementsFrom(class)
+	if !otherClass.IsArray() {
+		if !otherClass.IsInterface() {
+			if !class.IsInterface() {
+				return otherClass.IsSubClassOf(class)
+			}
+
+			return otherClass.IsImplementsFrom(class)
+		}
+
+		if !class.IsInterface() {
+			return class.IsJavaObjectClass()
+		}
+
+		return class.IsSuperInterfaceOf(otherClass)
 	}
+
+	if !class.IsArray() {
+		if !class.IsInterface() {
+			return class.IsJavaObjectClass()
+		}
+
+		return class.IsJavaCloneableClass() || class.IsJavaSerializableClass()
+	}
+
+	return otherClass.GetArrayElementClass() == class.GetArrayElementClass() ||
+		class.GetArrayElementClass().IsAssignableFrom(otherClass.GetArrayElementClass())
 }
 
 func (class *Class) IsSubClassOf(otherClass *Class) bool {
@@ -128,8 +165,20 @@ func (class *Class) IsSuperClassOf(otherClass *Class) bool {
 	return otherClass.IsSubClassOf(class)
 }
 
-func (class *Class) GetSuperClass() *Class {
-	return class.superClass
+func (class *Class) IsSuperInterfaceOf(otherInterface *Class) bool {
+	return otherInterface.IsSubInterfaceOf(class)
+}
+
+func (class *Class) IsJavaObjectClass() bool {
+	return class.name == "java/lang/Object"
+}
+
+func (class *Class) IsJavaCloneableClass() bool {
+	return class.name == "java/lang/Cloneable"
+}
+
+func (class *Class) IsJavaSerializableClass() bool {
+	return class.name == "java/io/Serializable"
 }
 
 func (class *Class) GetPackageName() string {
@@ -156,24 +205,12 @@ func (class *Class) GetStaticMethod(methodName, descriptor string) *Method {
 	return nil
 }
 
-func (class *Class) GetStaticVariables() Variables {
-	return class.staticVariables
-}
-
-func (class *Class) IsInitializationStarted() bool {
-	return class.isInitializationStarted
-}
-
 func (class *Class) StartInitialization() {
 	class.isInitializationStarted = true
 }
 
 func (class *Class) GetClassInitializationMethod() *Method {
 	return class.GetStaticMethod("<clinit>", "()V")
-}
-
-func (class *Class) GetClassLoader() *ClassLoader {
-	return class.classLoader
 }
 
 func (class *Class) NewObject() *Object {
