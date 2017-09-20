@@ -12,6 +12,7 @@ import (
 	"github.com/Frederick-S/jvmgo/instructions/load_instructions"
 	"github.com/Frederick-S/jvmgo/instructions/math_instructions"
 	"github.com/Frederick-S/jvmgo/instructions/reference_instructions"
+	"github.com/Frederick-S/jvmgo/instructions/reserved_instructions"
 	"github.com/Frederick-S/jvmgo/instructions/stack_instructions"
 	"github.com/Frederick-S/jvmgo/instructions/store_instructions"
 )
@@ -164,7 +165,7 @@ var (
 	// athrow        = &ATHROW{}
 	// monitorenter  = &MONITOR_ENTER{}
 	// monitorexit   = &MONITOR_EXIT{}
-	// invoke_native = &INVOKE_NATIVE{}
+	invoke_native = &reserved_instructions.InvokeNative{}
 )
 
 func NewInstruction(operationCode byte) base_instructions.Instruction {
@@ -571,10 +572,11 @@ func NewInstruction(operationCode byte) base_instructions.Instruction {
 		return &extended_instructions.IfNoNull{}
 	case 0xc8:
 		return &extended_instructions.GoToW{}
-	// case 0xc9:
-	// 	return &JSR_W{}
-	// case 0xca: breakpoint
-	// case 0xfe: impdep1
+		// case 0xc9:
+		// 	return &JSR_W{}
+		// case 0xca: breakpoint
+	case 0xfe:
+		return invoke_native
 	// case 0xff: impdep2
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", operationCode))
