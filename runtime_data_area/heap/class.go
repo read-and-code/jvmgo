@@ -21,6 +21,7 @@ type Class struct {
 	staticVariablesCount    uint
 	staticVariables         Variables
 	isInitializationStarted bool
+	javaClass               *Object
 }
 
 func newClass(classFile *classfile.ClassFile) *Class {
@@ -58,6 +59,10 @@ func (class *Class) GetStaticVariables() Variables {
 
 func (class *Class) IsInitializationStarted() bool {
 	return class.isInitializationStarted
+}
+
+func (class *Class) GetJavaClass() *Object {
+	return class.javaClass
 }
 
 func (class *Class) IsPublic() bool {

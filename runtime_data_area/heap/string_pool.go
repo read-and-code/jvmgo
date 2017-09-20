@@ -12,7 +12,7 @@ func ConvertGoStringToJavaString(classLoader *ClassLoader, goString string) *Obj
 	}
 
 	charArray := convertStringToUtf16(goString)
-	javaCharArray := &Object{classLoader.LoadClass("[C"), charArray}
+	javaCharArray := &Object{classLoader.LoadClass("[C"), charArray, nil}
 
 	javaString := classLoader.LoadClass("java/lang/String").NewObject()
 	javaString.SetReferenceValue("value", "[C", javaCharArray)

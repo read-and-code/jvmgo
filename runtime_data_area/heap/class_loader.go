@@ -13,10 +13,46 @@ type ClassLoader struct {
 }
 
 func NewClassLoader(classFinder *classpath.ClassFinder) *ClassLoader {
-	return &ClassLoader{
+	classLoader := &ClassLoader{
 		classFinder:   classFinder,
 		loadedClasses: make(map[string]*Class),
 	}
+
+	classLoader.loadBasicClasses()
+	classLoader.loadPrimitiveTypeClasses()
+
+	return classLoader
+}
+
+func (classLoader *ClassLoader) loadBasicClasses() {
+	javaClassClass := classLoader.LoadClass("java/lang/Class")
+
+	for _, class := range classLoader.loadedClasses {
+		if class.javaClass == nil {
+			class.javaClass = javaClassClass.NewObject()
+			class.javaClass.extraData = class
+		}
+	}
+}
+
+func (classLoader *ClassLoader) loadPrimitiveTypeClasses() {
+	for primitiveType, _ := range primitiveTypes {
+		classLoader.loadPrimitiveTypeClass(primitiveType)
+	}
+}
+
+func (classLoader *ClassLoader) loadPrimitiveTypeClass(className string) {
+	class := &Class{
+		accessFlags:             ACC_PUBLIC,
+		name:                    className,
+		classLoader:             classLoader,
+		isInitializationStarted: true,
+	}
+
+	class.javaClass = classLoader.loadedClasses["java/lang/Class"].NewObject()
+	class.javaClass.extraData = class
+
+	classLoader.loadedClasses[className] = class
 }
 
 func (classLoader *ClassLoader) LoadClass(className string) *Class {
@@ -27,10 +63,19 @@ func (classLoader *ClassLoader) LoadClass(className string) *Class {
 	}
 
 	if className[0] == '[' {
-		return classLoader.LoadArrayClass(className)
+		class = classLoader.LoadArrayClass(className)
+	} else {
+		class = classLoader.LoadNonArrayClass(className)
 	}
 
-	return classLoader.LoadNonArrayClass(className)
+	javaClassClass, ok := classLoader.loadedClasses["java/lang/Class"]
+
+	if ok {
+		class.javaClass = javaClassClass.NewObject()
+		class.javaClass.extraData = class
+	}
+
+	return class
 }
 
 func (classLoader *ClassLoader) LoadArrayClass(className string) *Class {

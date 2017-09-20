@@ -1,8 +1,9 @@
 package heap
 
 type Object struct {
-	class *Class
-	data  interface{}
+	class     *Class
+	data      interface{}
+	extraData interface{}
 }
 
 func newObject(class *Class) *Object {
@@ -18,6 +19,14 @@ func (object *Object) GetClass() *Class {
 
 func (object *Object) GetFields() Variables {
 	return object.data.(Variables)
+}
+
+func (object *Object) GetExtraData() interface{} {
+	return object.extraData
+}
+
+func (object *Object) SetExtraData(extraData interface{}) {
+	object.extraData = extraData
 }
 
 func (object *Object) IsInstanceOf(class *Class) bool {
