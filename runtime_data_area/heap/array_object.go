@@ -54,3 +54,26 @@ func (object *Object) GetArrayLength() int32 {
 		panic("Invalid array type")
 	}
 }
+
+func CopyArray(sourceArray, targetArray *Object, sourceArrayPosition, targetArrayPosition, length int32) {
+	switch sourceArray.data.(type) {
+	case []int8:
+		copy(targetArray.data.([]int8)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]int8)[sourceArrayPosition:sourceArrayPosition+length])
+	case []int16:
+		copy(targetArray.data.([]int16)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]int16)[sourceArrayPosition:sourceArrayPosition+length])
+	case []int32:
+		copy(targetArray.data.([]int32)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]int32)[sourceArrayPosition:sourceArrayPosition+length])
+	case []int64:
+		copy(targetArray.data.([]int64)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]int64)[sourceArrayPosition:sourceArrayPosition+length])
+	case []uint16:
+		copy(targetArray.data.([]uint16)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]uint16)[sourceArrayPosition:sourceArrayPosition+length])
+	case []float32:
+		copy(targetArray.data.([]float32)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]float32)[sourceArrayPosition:sourceArrayPosition+length])
+	case []float64:
+		copy(targetArray.data.([]float64)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]float64)[sourceArrayPosition:sourceArrayPosition+length])
+	case []*Object:
+		copy(targetArray.data.([]*Object)[targetArrayPosition:targetArrayPosition+length], sourceArray.data.([]*Object)[sourceArrayPosition:sourceArrayPosition+length])
+	default:
+		panic("Not array!")
+	}
+}

@@ -33,3 +33,17 @@ func convertStringToUtf16(value string) []uint16 {
 func convertUtf16ToString(chars []uint16) string {
 	return string(utf16.Decode(chars))
 }
+
+func GetInternedString(javaString *Object) *Object {
+	goString := ConvertJavaStringToGoString(javaString)
+
+	internedString, ok := internedStrings[goString]
+
+	if ok {
+		return internedString
+	}
+
+	internedStrings[goString] = javaString
+
+	return javaString
+}

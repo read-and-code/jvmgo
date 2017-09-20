@@ -3,6 +3,7 @@ package reserved_instructions
 import (
 	"github.com/Frederick-S/jvmgo/instructions/base_instructions"
 	"github.com/Frederick-S/jvmgo/native_methods"
+	_ "github.com/Frederick-S/jvmgo/native_methods/java/lang"
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 

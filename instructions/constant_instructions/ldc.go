@@ -29,8 +29,11 @@ func loadConstantFromConstantPoolAndPushToOperandStack(frame *runtime_data_area.
 		operandStack.PushFloatValue(constant.(float32))
 	case string:
 		internedString := heap.ConvertGoStringToJavaString(class.GetClassLoader(), constant.(string))
-
 		operandStack.PushReferenceValue(internedString)
+	case *heap.ClassReference:
+		classReference := constant.(*heap.ClassReference)
+		classObject := classReference.GetResolvedClass().GetJavaClass()
+		operandStack.PushReferenceValue(classObject)
 	default:
 		panic("TODO: ldc")
 	}

@@ -69,3 +69,7 @@ func (localVariables LocalVariables) GetReferenceValue(index uint) *heap.Object 
 func (localVariables LocalVariables) SetVariable(index uint, variable Variable) {
 	localVariables[index] = variable
 }
+
+func (localVariables LocalVariables) GetThis() *heap.Object {
+	return localVariables.GetReferenceValue(0)
+}

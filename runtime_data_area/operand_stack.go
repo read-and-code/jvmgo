@@ -21,6 +21,18 @@ func newOperandStack(maxStackSize uint) *OperandStack {
 	return nil
 }
 
+func (operandStack *OperandStack) PushBooleanValue(value bool) {
+	if value {
+		operandStack.PushIntegerValue(1)
+	} else {
+		operandStack.PushIntegerValue(0)
+	}
+}
+
+func (operandStack *OperandStack) PopBooleanValue() bool {
+	return operandStack.PopIntegerValue() == 1
+}
+
 func (operandStack *OperandStack) PushIntegerValue(value int32) {
 	operandStack.operands[operandStack.size].numericalValue = value
 	operandStack.size++

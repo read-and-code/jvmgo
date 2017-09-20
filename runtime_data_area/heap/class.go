@@ -65,6 +65,10 @@ func (class *Class) GetJavaClass() *Object {
 	return class.javaClass
 }
 
+func (class *Class) GetJavaName() string {
+	return strings.Replace(class.name, "/", ".", -1)
+}
+
 func (class *Class) IsPublic() bool {
 	return class.accessFlags&ACC_PUBLIC != 0
 }
@@ -184,6 +188,12 @@ func (class *Class) IsJavaCloneableClass() bool {
 
 func (class *Class) IsJavaSerializableClass() bool {
 	return class.name == "java/io/Serializable"
+}
+
+func (class *Class) IsPrimitive() bool {
+	_, ok := primitiveTypes[class.name]
+
+	return ok
 }
 
 func (class *Class) GetPackageName() string {
