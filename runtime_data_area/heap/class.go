@@ -139,7 +139,7 @@ func (class *Class) IsAssignableFrom(otherClass *Class) bool {
 }
 
 func (class *Class) IsSubClassOf(otherClass *Class) bool {
-	for currentClass := class; currentClass != nil; currentClass = currentClass.superClass {
+	for currentClass := class.superClass; currentClass != nil; currentClass = currentClass.superClass {
 		if currentClass == otherClass {
 			return true
 		}

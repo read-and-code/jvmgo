@@ -18,6 +18,13 @@ func (getStatic *GetStatic) Execute(frame *runtime_data_area.Frame) {
 	field := fieldReference.GetResolvedField()
 	class := field.GetClass()
 
+	if !class.IsInitializationStarted() {
+		frame.RevertNextPC()
+		base_instructions.InitializeClass(frame.GetThread(), class)
+
+		return
+	}
+
 	if !field.IsStatic() {
 		panic("java.lang.IncompatibleClassChangeError")
 	}
