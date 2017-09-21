@@ -24,6 +24,8 @@ func (invokeVirtual *InvokeVirtual) Execute(frame *runtime_data_area.Frame) {
 		panic("java.lang.IncompatibleClassChangeError")
 	}
 
+	fmt.Println("-----------------------------" + resolvedMethod.GetName())
+
 	referenceValue := frame.GetOperandStack().GetReferenceValueBelowTop(resolvedMethod.GetArgumentsCount() - 1)
 
 	if referenceValue == nil {

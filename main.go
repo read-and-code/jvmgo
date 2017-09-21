@@ -12,7 +12,7 @@ func main() {
 	// cmd := parseCmd()
 	cmd := &Cmd{
 		jrePath:   "/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/jre",
-		className: "./java/HelloWorld",
+		className: "./java/GetClassTest",
 	}
 
 	if cmd.showVersion {
@@ -32,7 +32,7 @@ func startJVM(cmd *Cmd) {
 	mainMethod := mainClass.GetMainMethod()
 
 	if mainMethod != nil {
-		interpret(mainMethod)
+		interpret(mainMethod, cmd.arguments)
 	} else {
 		fmt.Printf("Main method not found in class %s\n", cmd.className)
 	}

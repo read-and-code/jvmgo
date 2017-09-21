@@ -9,13 +9,30 @@ import (
 	"github.com/Frederick-S/jvmgo/runtime_data_area/heap"
 )
 
-func interpret(method *heap.Method) {
+func interpret(method *heap.Method, arguments []string) {
 	thread := runtime_data_area.NewThread()
-	thread.PushFrame(thread.NewFrame(method))
+	frame := thread.NewFrame(method)
+	thread.PushFrame(frame)
+
+	javaArguments := createArgumentsArray(method.GetClass().GetClassLoader(), arguments)
+
+	frame.GetLocalVariables().SetReferenceValue(0, javaArguments)
 
 	defer catchError(thread)
 
 	loop(thread)
+}
+
+func createArgumentsArray(classLoader *heap.ClassLoader, arguments []string) *heap.Object {
+	stringClass := classLoader.LoadClass("java/lang/String")
+	argumentsArray := stringClass.GetArrayClass().NewArray(uint(len(arguments)))
+	javaArguments := argumentsArray.GetReferenceArray()
+
+	for i, argument := range arguments {
+		javaArguments[i] = heap.ConvertGoStringToJavaString(classLoader, argument)
+	}
+
+	return argumentsArray
 }
 
 func catchError(thread *runtime_data_area.Thread) {
