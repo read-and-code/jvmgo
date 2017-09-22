@@ -11,7 +11,7 @@ const javaLangObject = "java/lang/Object"
 
 func init() {
 	native_methods.RegisterNativeMethod(javaLangObject, "getClass", "()Ljava/lang/Class;", getClass)
-	native_methods.RegisterNativeMethod(javaLangObject, "hashCode", "()I;", getHashCode)
+	native_methods.RegisterNativeMethod(javaLangObject, "hashCode", "()I", getHashCode)
 	native_methods.RegisterNativeMethod(javaLangObject, "clone", "()Ljava/lang/Object;", clone)
 }
 
