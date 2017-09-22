@@ -220,6 +220,22 @@ func (class *Class) GetStaticMethod(methodName, descriptor string) *Method {
 	return nil
 }
 
+func (class *Class) GetInstanceMethod(methodName, methodDescriptor string) *Method {
+	return class.GetMethod(methodName, methodDescriptor, false)
+}
+
+func (class *Class) GetMethod(name, descriptor string, isStatic bool) *Method {
+	for currentClass := class; currentClass != nil; currentClass = currentClass.superClass {
+		for _, method := range currentClass.methods {
+			if method.IsStatic() == isStatic && method.name == name && method.descriptor == descriptor {
+				return method
+			}
+		}
+	}
+
+	return nil
+}
+
 func (class *Class) GetField(name, descriptor string, isStatic bool) *Field {
 	for currentClass := class; currentClass != nil; currentClass = currentClass.superClass {
 		for _, field := range currentClass.fields {
@@ -248,4 +264,16 @@ func (class *Class) GetArrayClass() *Class {
 	arrayClassName := getArrayClassName(class.name)
 
 	return class.classLoader.LoadClass(arrayClassName)
+}
+
+func (class *Class) GetReferenceVariable(fieldName, fieldDescriptor string) *Object {
+	field := class.GetField(fieldName, fieldDescriptor, true)
+
+	return class.staticVariables.GetReferenceValue(field.variableIndex)
+}
+
+func (class *Class) SetReferenceVariable(fieldName, fieldDescriptor string, referenceVariable *Object) {
+	field := class.GetField(fieldName, fieldDescriptor, true)
+
+	class.staticVariables.SetReferenceValue(field.variableIndex, referenceVariable)
 }

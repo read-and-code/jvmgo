@@ -4,6 +4,7 @@ import (
 	"github.com/Frederick-S/jvmgo/instructions/base_instructions"
 	"github.com/Frederick-S/jvmgo/native_methods"
 	_ "github.com/Frederick-S/jvmgo/native_methods/java/lang"
+	_ "github.com/Frederick-S/jvmgo/native_methods/sun/misc"
 	"github.com/Frederick-S/jvmgo/runtime_data_area"
 )
 
