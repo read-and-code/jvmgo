@@ -7,6 +7,8 @@ type Method struct {
 	maxStackSize              uint
 	maxNumberOfLocalVariables uint
 	code                      []byte
+	exceptionTable            ExceptionTable
+	lineNumberTable           *classfile.LineNumberTableAttribute
 	argumentsCount            uint
 }
 
@@ -42,6 +44,8 @@ func (method *Method) copyAttributes(memberInfo *classfile.MemberInfo) {
 		method.maxStackSize = codeAttribute.GetMaxStackSize()
 		method.maxNumberOfLocalVariables = codeAttribute.GetMaxNumberOfLocalVariables()
 		method.code = codeAttribute.GetCode()
+		method.exceptionTable = newExceptionTable(codeAttribute.GetExceptionTable(), method.class.constantPool)
+		method.lineNumberTable = codeAttribute.GetLineNumberTableAttribute()
 	}
 }
 
@@ -124,4 +128,26 @@ func (method *Method) GetCode() []byte {
 
 func (method *Method) GetArgumentsCount() uint {
 	return method.argumentsCount
+}
+
+func (method *Method) FindExceptionHandler(exceptionClass *Class, pc int) int {
+	exceptionHandler := method.exceptionTable.findExceptionHandler(exceptionClass, pc)
+
+	if exceptionHandler != nil {
+		return exceptionHandler.handlerPC
+	}
+
+	return -1
+}
+
+func (method *Method) GetLineNumber(pc int) int {
+	if method.IsNative() {
+		return -2
+	}
+
+	if method.lineNumberTable == nil {
+		return -1
+	}
+
+	return method.lineNumberTable.GetLineNumber(pc)
 }

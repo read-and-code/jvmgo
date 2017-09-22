@@ -51,3 +51,14 @@ func (codeAttribute *CodeAttribute) GetCode() []byte {
 func (codeAttribute *CodeAttribute) GetExceptionTable() []*ExceptionTableEntry {
 	return codeAttribute.exceptionTable
 }
+
+func (codeAttribute *CodeAttribute) GetLineNumberTableAttribute() *LineNumberTableAttribute {
+	for _, attributeInfo := range codeAttribute.attributes {
+		switch attributeInfo.(type) {
+		case *LineNumberTableAttribute:
+			return attributeInfo.(*LineNumberTableAttribute)
+		}
+	}
+
+	return nil
+}

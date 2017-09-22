@@ -37,10 +37,18 @@ func (thread *Thread) GetTopFrame() *Frame {
 	return thread.jvmStack.GetTopFrame()
 }
 
+func (thread *Thread) GetFrames() []*Frame {
+	return thread.jvmStack.GetFrames()
+}
+
 func (thread *Thread) NewFrame(method *heap.Method) *Frame {
 	return newFrame(thread, method)
 }
 
 func (thread *Thread) IsJVMStackEmpty() bool {
 	return thread.jvmStack.IsEmpty()
+}
+
+func (thread *Thread) ClearStack() {
+	thread.jvmStack.Clear()
 }

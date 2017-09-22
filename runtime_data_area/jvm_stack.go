@@ -46,6 +46,22 @@ func (jvmStack *JVMStack) GetTopFrame() *Frame {
 	return jvmStack.topFrame
 }
 
+func (jvmStack *JVMStack) GetFrames() []*Frame {
+	frames := make([]*Frame, 0, jvmStack.size)
+
+	for frame := jvmStack.topFrame; frame != nil; frame = frame.lower {
+		frames = append(frames, frame)
+	}
+
+	return frames
+}
+
 func (jvmStack *JVMStack) IsEmpty() bool {
 	return jvmStack.topFrame == nil
+}
+
+func (jvmStack *JVMStack) Clear() {
+	for !jvmStack.IsEmpty() {
+		jvmStack.PopFrame()
+	}
 }

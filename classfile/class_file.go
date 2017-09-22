@@ -141,3 +141,14 @@ func (classFile *ClassFile) GetInterfaceNames() []string {
 
 	return interfaceNames
 }
+
+func (classFile *ClassFile) GetSourceFileAttribute() *SourceFileAttribute {
+	for _, attributeInfo := range classFile.attributes {
+		switch attributeInfo.(type) {
+		case *SourceFileAttribute:
+			return attributeInfo.(*SourceFileAttribute)
+		}
+	}
+
+	return nil
+}

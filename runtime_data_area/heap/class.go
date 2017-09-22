@@ -14,6 +14,7 @@ type Class struct {
 	constantPool            *ConstantPool
 	fields                  []*Field
 	methods                 []*Method
+	sourceFileName          string
 	classLoader             *ClassLoader
 	superClass              *Class
 	interfaces              []*Class
@@ -33,8 +34,19 @@ func newClass(classFile *classfile.ClassFile) *Class {
 	class.constantPool = newConstantPool(class, classFile.GetConstantPool())
 	class.fields = newFields(class, classFile.GetFields())
 	class.methods = newMethods(class, classFile.GetMethods())
+	class.sourceFileName = getSourceFileName(classFile)
 
 	return class
+}
+
+func getSourceFileName(classFile *classfile.ClassFile) string {
+	sourceFileAttribute := classFile.GetSourceFileAttribute()
+
+	if sourceFileAttribute != nil {
+		return sourceFileAttribute.GetFileName()
+	}
+
+	return "Unknown"
 }
 
 func (class *Class) GetName() string {
@@ -47,6 +59,10 @@ func (class *Class) GetConstantPool() *ConstantPool {
 
 func (class *Class) GetSuperClass() *Class {
 	return class.superClass
+}
+
+func (class *Class) GetSourceFileName() string {
+	return class.sourceFileName
 }
 
 func (class *Class) GetClassLoader() *ClassLoader {
