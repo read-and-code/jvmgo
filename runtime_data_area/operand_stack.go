@@ -109,3 +109,11 @@ func (operandStack *OperandStack) PopOperand() Variable {
 func (operandStack *OperandStack) GetReferenceValueBelowTop(n uint) *heap.Object {
 	return operandStack.operands[operandStack.size-1-n].referenceValue
 }
+
+func (operandStack *OperandStack) Clear() {
+	operandStack.size = 0
+
+	for i := range operandStack.operands {
+		operandStack.operands[i].referenceValue = nil
+	}
+}

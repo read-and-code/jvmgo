@@ -162,7 +162,7 @@ var (
 	areturn     = &control_instructions.AReturn{}
 	_return     = &control_instructions.Return{}
 	arraylength = &reference_instructions.ArrayLength{}
-	// athrow        = &ATHROW{}
+	athrow      = &reference_instructions.AThrow{}
 	// monitorenter  = &MONITOR_ENTER{}
 	// monitorexit   = &MONITOR_EXIT{}
 	invoke_native = &reserved_instructions.InvokeNative{}
@@ -552,8 +552,8 @@ func NewInstruction(operationCode byte) base_instructions.Instruction {
 		return &reference_instructions.ANewArray{}
 	case 0xbe:
 		return arraylength
-		// case 0xbf:
-		// 	return athrow
+	case 0xbf:
+		return athrow
 	case 0xc0:
 		return &reference_instructions.CheckCast{}
 	case 0xc1:
